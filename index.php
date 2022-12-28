@@ -15,13 +15,21 @@ define('BASEPATH',"/php-twitter/");
 Route::add('/', function () {
   include("./views/home.php");
 });
+
 Route::add('/login', function () {
   include("./views/login.php");
 },['get','post']);
+
 Route::add("/signup", function () {
   include("./views/signup.php");
 }, ['get', 'post']);
+
 Route::add("/logout", function () {
   include("./views/logout.php");
 });
+
+Route::add("/api/tweet", function () {
+  include("./api/tweet.php");
+  
+}, 'post');
 Route::run(BASEPATH);
