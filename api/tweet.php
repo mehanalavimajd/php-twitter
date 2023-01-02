@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       VALUES ('$username', '$text')";
     
     if ($conn->query($sql) === TRUE) {
-
         ?> 
         <?php
         header("Location: /php-twitter/");
