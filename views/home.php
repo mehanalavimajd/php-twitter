@@ -34,7 +34,7 @@ session_start();
         <p style=\"opacity:40%\">$date</p>
         <b> $user wrote:</b>
         <p style=\"margin-left:40px\"> $text </p>
-        <button id=\"like-$id\" onclick=\"like($id)\">like</button>
+        <button class=\"like\" id=\"like-$id\" onclick=\"like($id)\">like</button>
         ";
     }
     } else {
@@ -44,6 +44,15 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
         // sending like request to api
+        let buttons = document.querySelectorAll('.like')
+        for (let i = 0; i < buttons.length; i++) {
+            const element = buttons[i];
+            let id = parseInt(element.id.replace("like-",""))
+            if(localStorage.getItem("liked-"+id)=='true'){
+                element.style.backgroundColor="red";
+                console.log(id);
+            }
+        }
         function like(id){
             $.ajax({
                 type:"POST",
