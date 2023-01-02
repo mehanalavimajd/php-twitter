@@ -34,7 +34,7 @@ session_start();
         <p style=\"opacity:40%\">$date</p>
         <b> $user wrote:</b>
         <p style=\"margin-left:40px\"> $text </p>
-        <button onclick=\"like($id)\">like</button>
+        <button id=\"like-$id\" onclick=\"like($id)\">like</button>
         ";
     }
     } else {
@@ -51,7 +51,13 @@ session_start();
                 data:"id="+id,
                 dataType:"text",
                 success: function (msg) {
-                  var jsonUpdatedData = msg;
+                    if(msg=="like"){
+                        document.getElementById("like-"+id).style.backgroundColor="red";
+                        localStorage.setItem("liked-"+id,"true")
+                    }else{
+                        document.getElementById("like-"+id).style.background="none";
+                        localStorage.setItem("liked-"+id,"false")
+                    }
                   console.log(msg);
                 }
             })
