@@ -29,13 +29,31 @@ session_start();
         $user = $row['username'];
         $text = $row['text'];
         $date = $row['date'];
+        $id = $row['id'];
         echo "
         <p style=\"opacity:40%\">$date</p>
         <b> $user wrote:</b>
         <p style=\"margin-left:40px\"> $text </p>
+        <button onclick=\"like($id)\">like</button>
         ";
     }
     } else {
     echo "0 results";
 }
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // sending like request to api
+        function like(id){
+            $.ajax({
+                type:"POST",
+                url:"api/like.php",
+                data:"id="+id,
+                dataType:"text",
+                success: function (msg) {
+                  var jsonUpdatedData = msg;
+                  console.log(msg);
+                }
+            })
+        }
+    </script>
