@@ -35,6 +35,7 @@ session_start();
         <b> $user wrote:</b>
         <p style=\"margin-left:40px\"> $text </p>
         <button class=\"like\" id=\"like-$id\" onclick=\"like($id)\">like</button>
+        <p id=\"like-num-$id\"> </p>
         ";
     }
     } else {
@@ -52,6 +53,15 @@ session_start();
                 element.style.backgroundColor="red";
                 console.log(id);
             }
+            $.ajax({
+                type:"POST",
+                url:"api/like-count.php",
+                data:"id="+id,
+                dataType:"text",
+                success: function (msg) {
+                    document.getElementById("like-num-"+id).innerText=msg;
+                }
+            })
         }
         function like(id){
             $.ajax({
@@ -63,9 +73,11 @@ session_start();
                     if(String(msg).includes("l")){
                         document.getElementById("like-"+id).style.backgroundColor="red";
                         localStorage.setItem("liked-"+id,"true")
+                        document.getElementById("like-num-"+id).innerText=msg.split("-")[1];
                     }else{
                         document.getElementById("like-"+id).style.background="none";
                         localStorage.removeItem("liked-"+id)
+                        document.getElementById("like-num-"+id).innerText=msg.split("-")[1];
                     }
                   console.log(msg);
                 }
