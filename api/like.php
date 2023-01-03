@@ -22,7 +22,7 @@ if ($result->num_rows > 0) {
             $conn->query($sql);
             $sql = "UPDATE tweet SET likes='$likes' WHERE id=$id";
             $conn->query($sql);
-            echo "unlike-$likes"; // responding back!
+            echo "u-$likes"; // responding back!
         }else{
             $likes = $row['likes'] + 1;
             $likers .= $user . ",";
@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
             $conn->query($sql);
             $sql = "UPDATE tweet SET likes='$likes' WHERE id=$id";
             $conn->query($sql);
-            echo "like-$likes"; // responding back!
+            echo "l-$likes"; // responding back!
         }
   }
 } 

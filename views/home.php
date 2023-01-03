@@ -60,12 +60,12 @@ session_start();
                 data:"id="+id,
                 dataType:"text",
                 success: function (msg) {
-                    if(msg=="like"){
+                    if(String(msg).includes("l")){
                         document.getElementById("like-"+id).style.backgroundColor="red";
                         localStorage.setItem("liked-"+id,"true")
                     }else{
                         document.getElementById("like-"+id).style.background="none";
-                        localStorage.setItem("liked-"+id,"false")
+                        localStorage.removeItem("liked-"+id)
                     }
                   console.log(msg);
                 }
