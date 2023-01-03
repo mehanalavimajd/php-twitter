@@ -3,25 +3,50 @@
     ini_set('display_errors',1);
 session_start();
 $conn = new mysqli("localhost", "mehan", "mehan1388","login");
-$follower_user = $_SESSION['username'];
-$following_user = $_POST['u'];
-$sql = "SELECT * FROM users where username='$follower_user'";
+$u1 = $_SESSION['username'];
+$u2 = $_POST['u']; // * u1 wants to follow u2
+$sql = "SELECT * FROM users where username='$u1'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $followings = $row['following'];
-        if (strpos($followings, $follower_user) == false) {
-            $f = $followings . $following_user . ",";
-            $sql = "UPDATE users SET following='$f' WHERE username='$following_user'";
+        if (strpos($followings, $u2) === false) {
+            $f = $followings . $u2 . ",";
+            $sql = "UPDATE users SET following='$f' WHERE username='$u1'";
             $conn->query($sql);
-            echo "success";
-            $sql = "SELECT * FROM users where username='$follower_user'";
+            $sql = "SELECT * FROM users where username='$u2'";
             $result2 = $conn->query($sql);
-            while ($row2 = $result->fetch_assoc())
-                $f2 = $row2['followers'] . $following_user . ",";
-            $sql = "UPDATE users SET following='$followings' WHERE username='$follower_user'";
+            $f2 = '';
+            while ($row2 = $result2->fetch_assoc()) {
+                $f2 = $row2['follower'] . $u1 . ",";
+                $follower_num = $row2["f-num"];
+                $follower_num += 1;
+            }
+            $sql = "UPDATE users SET follower='$f2' WHERE username='$u2'";
             $conn->query($sql);
+            global $follower_num;
+            $sql = "UPDATE users SET `f-num`='$follower_num' WHERE username='$u2'";
+            $conn->query($sql);
+            echo "f-$follower_num";
+        }else{
+            $f = str_replace($followings, "", $u2.",");
+            $sql = "UPDATE users SET following='$f' WHERE username='$u1'";
+            $conn->query($sql);
+            $sql = "SELECT * FROM users where username='$u2'";
+            $result2 = $conn->query($sql);
+            $f2 = '';
+            while ($row2 = $result2->fetch_assoc()) {
+                $f2 = str_replace($row2['follower'], "", $u1.",");;
+                $follower_num = $row2["f-num"];
+                $follower_num -= 1;
+            }
+            $sql = "UPDATE users SET follower='$f2' WHERE username='$u2'";
+            $conn->query($sql);
+            global $follower_num;
+            $sql = "UPDATE users SET `f-num`='$follower_num' WHERE username='$u2'";
+            $conn->query($sql);
+            echo "u-$follower_num";
         }
     }
 }
