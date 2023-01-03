@@ -33,6 +33,7 @@ Route::add("/api/tweet", function () {
 }, 'post');
 
 Route::add("/user/([a-z-0-9-]*)", function ($slug) {
+  $_GET['user'] = $slug;
   include("./views/user.php");
 });
 Route::run(BASEPATH);
