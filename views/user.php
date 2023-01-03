@@ -12,6 +12,32 @@ $result = $conn->query($sql_query);
 if($result->num_rows == 1){
     while($row = $result->fetch_assoc()){
         echo $row['username'];
+        echo $row['email'];
+        session_start();
+        if($_SESSION['username'])
+            include("views/user-real.php");
+        $conn = new mysqli("localhost", "mehan", "mehan1388","login");
+        $sql = "SELECT * FROM tweet where username='$user' ORDER BY date DESC LIMIT 0,25";
+        $result = $conn->query($sql);
+    
+        if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $user = $row['username'];
+            $text = $row['text'];
+            $date = $row['date'];
+            $id = $row['id'];
+            echo "
+            <p style=\"opacity:40%\">$date</p>
+            <b> $user wrote:</b>
+            <p style=\"margin-left:40px\"> $text </p>
+            <button class=\"like\" id=\"like-$id\" onclick=\"like($id)\">like</button>
+            <p id=\"like-num-$id\"> </p>
+            ";
+        }
+        } else {
+        echo "0 results";
+        }
     }
 }else{
     echo "user $user not found :(";
