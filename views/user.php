@@ -7,13 +7,5 @@ $conn = new mysqli("localhost", "mehan", "mehan1388","login");
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$sql_query = "SELECT firstname FROM MyGuests WHERE id=" . $id;
-$result = $conn->query($sql_query);
-if($result->num_rows == 1){
-    while($row = $result->fetch_assoc()){
-        echo "ID:" . $id . "<br>". "username:" . $row['firstname'];
-    }
-}else{
-    echo "no user with id " . $id;
-}
+
 ?>

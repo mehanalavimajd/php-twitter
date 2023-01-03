@@ -30,6 +30,9 @@ Route::add("/logout", function () {
 
 Route::add("/api/tweet", function () {
   include("./api/tweet.php");
-  
 }, 'post');
+
+Route::add("/user/([a-z-0-9-]*)", function ($slug) {
+  include("./views/user.php");
+});
 Route::run(BASEPATH);
