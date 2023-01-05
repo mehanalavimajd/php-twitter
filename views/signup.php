@@ -1,7 +1,7 @@
 <form action="/php-twitter/signup/" method="POST">
     <input type="text" name="username">
     <input type="password" name="pass">
-    <input type="submit" href="/">
+    <input type="submit">
 </form>
 <?php
     ini_set('error_reporting',E_ALL);
