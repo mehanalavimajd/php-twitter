@@ -36,4 +36,7 @@ Route::add("/user/([a-z-0-9-]*)", function ($slug) {
   $_GET['user'] = $slug;
   include("./views/user.php");
 });
+Route::add("/followings", function () {
+  include("./views/followings.php");
+});
 Route::run(BASEPATH);
