@@ -14,8 +14,8 @@ if($result->num_rows == 1){
         echo $row['username'];
         echo $row['email'];
         session_start();
-        if($_SESSION['username'])
-            include("views/user-real.php");
+        if(isset($_SESSION['username'])){
+            include("views/user-real.php");}
         $conn = new mysqli("localhost", "mehan", "mehan1388","login");
         $sql = "SELECT * FROM tweet where username='$user' ORDER BY date DESC LIMIT 0,25";
         $result = $conn->query($sql);
@@ -33,10 +33,9 @@ if($result->num_rows == 1){
             <p style=\"margin-left:40px\"> $text </p>
             <button class=\"like\" id=\"like-$id\" onclick=\"like($id)\">like</button>
             <p id=\"like-num-$id\"> </p>
-            ";
-        }
+            ";}
         } else {
-        echo "0 results";
+        echo "no tweet";
         }
     }
 }else{
