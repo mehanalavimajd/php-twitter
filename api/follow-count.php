@@ -14,6 +14,9 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
+    if ($row['follower']===null) {
+      $row['follower'] = "";
+    }
         if(strpos($row['follower'],$user2)===false){
             $s = $row['f-num'];
             echo "f-$s";

@@ -10,6 +10,7 @@ $.ajax({
         data:"user="+'<?php echo $user ?>',
         dataType:"text",
         success: function (msg) {
+            console.log(msg);
             document.getElementById("f-num").innerText=msg.split("-")[1];
             let x = "unfollow"?String(msg).includes("u"):"follow";
             if(x)

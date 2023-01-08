@@ -32,7 +32,7 @@ if (!isset($_SESSION['username'])) {
         $id = $row['id'];
         echo "
         <p style=\"opacity:40%\">$date</p>
-        <b> $user wrote:</b>
+        <b> <a href=\"user/$user\">$user</a> wrote:</b>
         <p style=\"margin-left:40px\"> $text </p>
         <button class=\"like\" id=\"like-$id\" onclick=\"like($id)\">like</button>
         <p id=\"like-num-$id\"> </p>

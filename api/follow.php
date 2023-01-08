@@ -11,6 +11,8 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $followings = $row['following'];
+        if ($followings === null)
+            $followings = "";
         if (strpos($followings, $u2) === false) {
             $f = $followings . $u2 . ",";
             $sql = "UPDATE users SET following='$f' WHERE username='$u1'";
@@ -19,6 +21,8 @@ if ($result->num_rows > 0) {
             $result2 = $conn->query($sql);
             $f2 = '';
             while ($row2 = $result2->fetch_assoc()) {
+                if ($row2['follower']=== null)
+                $row2['follower']= "";
                 $f2 = $row2['follower'] . $u1 . ",";
                 $follower_num = $row2["f-num"];
                 $follower_num += 1;
@@ -37,6 +41,8 @@ if ($result->num_rows > 0) {
             $result2 = $conn->query($sql);
             $f2 = '';
             while ($row2 = $result2->fetch_assoc()) {
+                if ($row2['follower'] === null)
+                    $row2['follower'] = "";
                 $f2 = str_replace($row2['follower'], "", $u1.",");;
                 $follower_num = $row2["f-num"];
                 $follower_num -= 1;
