@@ -1,48 +1,4 @@
-<?php
-    ini_set('error_reporting',E_ALL);
-    ini_set('display_errors',1);
-session_start();
-    if(isset($_SESSION['username'])){
-        echo "Welcome " . $_SESSION['username'];
-        echo "<br>";
-        echo '<a href="/php-twitter/logout">Logout from here</a>';
-        ?>
-        <form action="/php-twitter/api/tweet" method="post">
-            <input type="text" name="text">
-            <button type="submit">Tweet!</button>
-        </form>
-
-    <?php
-    
-    }else{
-        echo "You aren't logged in";
-        echo "<br>";
-        echo '<a href="/php-twitter/login">Login from here</a>';
-    }
-    $conn = new mysqli("localhost", "mehan", "mehan1388","login");
-    $sql = "SELECT * FROM tweet ORDER BY date DESC LIMIT 0,25";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $user = $row['username'];
-        $text = $row['text'];
-        $date = $row['date'];
-        $id = $row['id'];
-        echo "
-        <p style=\"opacity:40%\">$date</p>
-        <b> <a href=\"user/$user\">$user</a> wrote:</b>
-        <p style=\"margin-left:40px\"> $text </p>
-        <button class=\"likes\" id=\"likes-$id\" onclick=\"like($id)\">like</button>
-        <p id=\"likes-num-$id\"> </p>
-        ";
-    }
-    } else {
-    echo "0 results";
-}
-    ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     
     <!DOCTYPE html>
 <html>
@@ -149,23 +105,19 @@ session_start();
           <h3>Create a Twit</h3>
           <button type="button" class="modal-close-button">&times;</button>
         </div>
-
+        <form action="/php-twitter/api/tweet" method="post">
         <div class="modal-body">
           <div class="twit-input-element">
-            <label for="twit-text-input">Twit text</label>
-            <textarea id="twit-text-input"></textarea>
-          </div>
-          <div class="twit-input-element">
-            <label for="twit-attribution-input">Author</label>
-            <input type="text" id="twit-attribution-input">
+            <label for="twit-text-input">Tweet text</label>
+            <input type="text" name="text">
           </div>
         </div>
 
         <div class="modal-footer">
           <button type="button" class="modal-cancel-button">Cancel</button>
-          <button type="button" class="modal-accept-button">Create Twit</button>
+          <button type="submit" class="modal-accept-button">Tweet!</button>
         </div>
-
+        </form>
       </div>
     </div>
 
