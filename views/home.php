@@ -35,7 +35,7 @@ session_start();
         <b> <a href=\"user/$user\">$user</a> wrote:</b>
         <p style=\"margin-left:40px\"> $text </p>
         <button class=\"likes\" id=\"likes-$id\" onclick=\"like($id)\">like</button>
-        <p id=\"like-num-$id\"> </p>
+        <p id=\"likes-num-$id\"> </p>
         ";
     }
     } else {
@@ -126,6 +126,7 @@ session_start();
             <a href=\"/php-twitter/user/$user\">$user</a>
           </p>
           <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
+          <p id=\"like-num-$id\" class=\"like-num\"> </p>
         </div>
       </article>
       ";
@@ -173,7 +174,6 @@ session_start();
 </html>
 <script>
         // sending like request to api
-        setTimeout(() => {
           let buttons = document.querySelectorAll('.like')
 
         console.log(buttons);
@@ -198,8 +198,7 @@ session_start();
                 }
             })
         }
-        }, 1400);
-       
+
         function like(id){
             $.ajax({
                 type:"POST",

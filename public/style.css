@@ -11,6 +11,15 @@ a {
    margin-left: 30px;
    margin-right:30px;
 }
+.like{
+  width: 40px;
+}
+.like-num {
+  position: relative;
+  left:-13px;
+  top:-33px;
+  width:3px;
+}
 .site-title {
   margin: 0;
   padding: 10px 20px;
@@ -119,11 +128,6 @@ a:focus {
   flex: 1 1 80%;
   margin-left: 10px;
 }
-
-.twit-content p {
-  margin: 0;
-}
-
 .twit-content .twit-author {
   margin-top: 8px;
   text-align: right;
