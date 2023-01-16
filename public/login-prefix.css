@@ -10,7 +10,7 @@ body {
   padding: 0;
   color: #222222;
   background-color: #f2f2f0;
-  background-color: #56385a;
+  background-color: #319df6;
   background-image: url("../images/cover.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -49,7 +49,7 @@ a:hover {
 }
 
 .form-body {
-  background-color: #4a304d;
+  background-color: #0873ca;
   overflow: hidden;
   padding: 50px;
   color: #ffffff;

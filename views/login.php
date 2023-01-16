@@ -54,11 +54,6 @@
 
 </body>
 </html>
-<form action="/php-twitter/login" method="POST">
-    <input type="text" name="username">
-    <input type="password" name="pass">
-    <input type="submit">
-</form>
 <?php
     session_start();
     ini_set('error_reporting',E_ALL);
