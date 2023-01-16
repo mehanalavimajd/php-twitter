@@ -30,7 +30,7 @@
       <nav class="navbar">
         <ul class="navlist">
           <li class="navitem navlink active"><a href="/">Home</a></li>
-          <li class="navitem navlink"><a href="/php-twitter/following">Following</a></li>
+          <li class="navitem navlink"><a href="/php-twitter/followings">Following</a></li>
           <li class="navitem navlink"><a href="/php-twitter/trending">Trending</a></li>
           <li class="navitem navbar-search">
             <input type="text" id="navbar-search-input" placeholder="Search...">
@@ -45,7 +45,7 @@
           <?php
         
           }else{
-            echo "<a id=\"username\" href=\"/php-twitter/twitter\">Login</a>";
+            echo "<a id=\"username\" href=\"/php-twitter/login\">Login</a>";
           }
           ?>
             
