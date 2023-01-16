@@ -4,19 +4,23 @@
     die("Connection failed: " . $conn->connect_error);
   }
   session_start();
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_SESSION['username'])) {
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_SESSION['username'];
     $text = $_POST['text'];
     $sql = "INSERT INTO tweet (username, text)
       VALUES ('$username', '$text')";
-    
+
     if ($conn->query($sql) === TRUE) {
-        ?> 
+      ?> 
         <?php
         header("Location: /php-twitter/");
         die();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+      echo "Error: " . $sql . "<br>" . $conn->error;
     }
-
+  }
+}else{
+  header("Location: /php-twitter?error=true");
+  die();
 }

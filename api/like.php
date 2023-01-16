@@ -6,6 +6,8 @@ session_start();
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
+if (!isset($_SESSION['username']))
+  die();
 $id = $_POST['id'];
 $user = $_SESSION['username'];
 $sql = "SELECT * FROM tweet where id=$id";

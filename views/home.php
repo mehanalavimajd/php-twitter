@@ -1,5 +1,5 @@
+<!-- bunch of cdn -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    
     <!DOCTYPE html>
 <html>
   <head>
@@ -37,6 +37,7 @@
             <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
             
             <?php
+            session_start();
             if(isset($_SESSION['username'])){
               $username = $_SESSION['username'];
               echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
@@ -127,7 +128,15 @@
 <script>
         // sending like request to api
           let buttons = document.querySelectorAll('.like')
-
+          function ErrorNotification(){   
+          alert("Please login to like and tweet")
+        }
+        if(String(window.location).split("?").length==2){
+          if(String(window.location).split("?")[1].includes("error")){
+            ErrorNotification();
+            window.location="/php-twitter"
+          }
+        }
         console.log(buttons);
         for (let i = 0; i < buttons.length; i++) {
             const element = buttons[i];
@@ -158,10 +167,12 @@
                 data:"id="+id,
                 dataType:"text",
                 success: function (msg) {
+                  // the condition is because maybe the user is not logged in
+                  if(msg!==''){
                     if(String(msg).includes("l")){
                         document.querySelector("#like-"+id).classList.replace("fa-regular","fa-solid")
                         document.querySelector("#like-"+id).style.color='red';
-                        localStorage.setItem("liked-"+id,"true")
+                        localStorage.setItem("liked-"+id,"true");
                         document.getElementById("like-num-"+id).innerText=msg.split("-")[1];
                     }else{
                       document.querySelector("#like-"+id).classList.replace("fa-solid","fa-regular")
@@ -170,7 +181,9 @@
                         document.getElementById("like-num-"+id).innerText=msg.split("-")[1];
                     }
                   console.log(msg);
-                }
+                }else{
+                  ErrorNotification();
+                }}
             })
         }
     </script>
