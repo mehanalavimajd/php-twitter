@@ -29,7 +29,7 @@
                         <li class="fb"><a href="#"></a></li>
                     </ul>
                 </div><!-- SOCIAL LOGIN -->
-                <form action="/php-twitter/login" method="POST" class="the-form">
+                <form action="//localhost/php-twitter/login" method="POST" class="the-form">
 
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" placeholder="Enter your email">
@@ -73,6 +73,8 @@
         while($row = $result->fetch_assoc()) {
           $_SESSION['username']=$row['username'];
           $_SESSION['pass']=$pass;
+          header("location: /php-twitter/");
+          die();
         }
      }else {
       echo "0 results";
