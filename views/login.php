@@ -66,15 +66,13 @@
     if($_SERVER['REQUEST_METHOD']=="POST"){
       $email = $_POST['email'];
       $pass = $_POST['pass'];
-      $sql_query="SELECT id FROM users WHERE email='$email' AND password='$pass'";
+      $sql_query="SELECT username FROM users WHERE email='$email' AND password='$pass'";
       $result = $conn->query($sql_query);
       if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
           $_SESSION['username']=$row['username'];
           $_SESSION['pass']=$pass;
-          header("location: /php-twitter/");
-          die();
         }
      }else {
       echo "0 results";

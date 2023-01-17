@@ -12,7 +12,6 @@ $result = $conn->query($sql_query);
 if($result->num_rows == 1){
     while($row = $result->fetch_assoc()){
         echo $row['username'];
-        echo $row['email'];
         session_start();
         if(isset($_SESSION['username'])){
             include("views/user-real.php");}
