@@ -35,7 +35,7 @@
           <li class="navitem navbar-search">
             <input type="text" id="navbar-search-input" placeholder="Search...">
             <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
-            
+            <img src="public/triangle.png" alt="" class="tri">
             <?php
             session_start();
             if(isset($_SESSION['username'])){

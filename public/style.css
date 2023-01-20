@@ -277,3 +277,11 @@ a:focus {
 .modal-footer .modal-accept-button:hover {
   background-color: #087dde;
 }
+.tri{
+  width: 0.75em;
+  height: auto;
+  transform: rotate(180deg);
+  margin-right:-20px;
+  margin-top:-5px;
+  margin-left: 40px;
+}
