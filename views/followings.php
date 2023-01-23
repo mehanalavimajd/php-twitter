@@ -23,8 +23,7 @@
 
     <header>
       <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
-    
-      <a href="#"><h1 class="site-title">
+      <a href="/php-twitter" class="mainlink"><h1 class="site-title">
       <b>UTA</b> tweeter</a>
       </h1>
       <nav class="navbar">
@@ -33,9 +32,10 @@
           <li class="navitem navlink active"><a href="/php-twitter/followings">Following</a></li>
           <li class="navitem navlink"><a href="/php-twitter/trending">Trending</a></li>
           <li class="navitem navbar-search">
+
             <input type="text" id="navbar-search-input" placeholder="Search...">
             <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
-            
+            <img src="public/triangle.png" alt="" class="tri" onclick="infobox()">
             <?php
             session_start();
             if(isset($_SESSION['username'])){
@@ -45,10 +45,12 @@
           <?php
         
           }else{
-            echo "<a id=\"username\" href=\"/php-twitter/twitter\">Login</a>";
+            echo "<a id=\"username\" href=\"/php-twitter/login\">Login</a>";
           }
           ?>
-            
+            <div class="info-box">
+              <a href='/php-twitter/logout'>Logout</a>
+            </div>
             
           </li>
         </ul>
@@ -58,53 +60,53 @@
     <main class="twit-container">
 
     <?php
-  $conn = new mysqli("localhost", "mehan", "mehan1388","login");
-  $u = $_SESSION["username"];
-  $sql = "SELECT * FROM users WHERE username='$u'";
-  $result = $conn->query($sql);
-  $f;
-  if ($result->num_rows > 0) {
-  // output data of each row
-      while($row = $result->fetch_assoc()) {
-          $f = $row['following'];
-      }
-  }
-  $array = explode(",",$f ?? '');
-  array_pop($array);
-  $sql = "SELECT * FROM tweet WHERE username IN ('" 
-   . implode("','", $array) 
-   . "')". "ORDER BY DATE DESC LIMIT 0,25";
-  $result = $conn->query($sql);
-
+    $conn = new mysqli("localhost", "mehan", "mehan1388","login");
+    $u = $_SESSION["username"];
+    $sql = "SELECT * FROM users WHERE username='$u'";
+    $result = $conn->query($sql);
+    $f;
     if ($result->num_rows > 0) {
-      // output data of each row
-      while ($row = $result->fetch_assoc()) {
-        $user = $row['username'];
-        $text = $row['text'];
-        $date = $row['date'];
-        $id = $row['id'];
-        echo "
-        <article class=\"twit\">
-        <div class=\"twit-icon\">
-          <i class=\"fas fa-bullhorn\"></i>
-        </div>
-        <div class=\"twit-content\">
-          <p class=\"twit-text\">
-            $text
-          </p>
-          <p class=\"twit-author\">
-            <a href=\"/php-twitter/user/$user\">$user</a>
-          </p>
-          <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
-          <p id=\"like-num-$id\" class=\"like-num\"> </p>
-        </div>
-      </article>
-      ";
-      }
+    // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $f = $row['following'];
+        }
     }
-     else {
-    echo "0 results";
-}
+    $array = explode(",",$f ?? '');
+    array_pop($array);
+    $sql = "SELECT * FROM tweet WHERE username IN ('" 
+     . implode("','", $array) 
+     . "')". "ORDER BY DATE DESC LIMIT 0,25";
+    $result = $conn->query($sql);
+  
+      if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+          $user = $row['username'];
+          $text = $row['text'];
+          $date = $row['date'];
+          $id = $row['id'];
+          echo "
+          <article class=\"twit\">
+          <div class=\"twit-icon\">
+            <i class=\"fas fa-bullhorn\"></i>
+          </div>
+          <div class=\"twit-content\">
+            <p class=\"twit-text\">
+              $text
+            </p>
+            <p class=\"twit-author\">
+              <a href=\"/php-twitter/user/$user\">$user</a>
+            </p>
+            <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
+            <p id=\"like-num-$id\" class=\"like-num\"> </p>
+          </div>
+        </article>
+        ";
+        }
+      }
+       else {
+      echo "0 results";
+  }
 ?>
 
     </main>
@@ -198,5 +200,16 @@
                   ErrorNotification();
                 }}
             })
+        }
+        let infoclick = 0;
+        function infobox(){
+          if(infoclick==0){
+          document.querySelector(".info-box").style.display='block';
+          infoclick=1;
+        }else{
+          document.querySelector(".info-box").style.display='none';
+          infoclick=0;
+        }
+    
         }
     </script>

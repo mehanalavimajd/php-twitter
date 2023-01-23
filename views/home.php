@@ -29,27 +29,28 @@
       </h1>
       <nav class="navbar">
         <ul class="navlist">
-          <li class="navitem navlink active"><a href="/php-twitter">Home</a></li>
+          <li class="navitem navlink active "><a href="/php-twitter">Home</a></li>
           <li class="navitem navlink"><a href="/php-twitter/followings">Following</a></li>
           <li class="navitem navlink"><a href="/php-twitter/trending">Trending</a></li>
           <li class="navitem navbar-search">
             <input type="text" id="navbar-search-input" placeholder="Search...">
             <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
-            <img src="public/triangle.png" alt="" class="tri">
+            <img src="public/triangle.png" alt="" class="tri" onclick="infobox()">
             <?php
             session_start();
             if(isset($_SESSION['username'])){
               $username = $_SESSION['username'];
               echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
             ?>
+            <div class="info-box">
+                 <a href='/php-twitter/logout'>Logout</a>
+            </div>
           <?php
         
           }else{
             echo "<a id=\"username\" href=\"/php-twitter/login\">Login</a>";
           }
           ?>
-            
-            
           </li>
         </ul>
       </nav>
@@ -103,7 +104,7 @@
       <div class="modal-dialog">
 
         <div class="modal-header">
-          <h3>Create a Twit</h3>
+          <h3>Create a Tweet</h3>
           <button type="button" class="modal-close-button">&times;</button>
         </div>
         <form action="/php-twitter/api/tweet" method="post">
@@ -185,5 +186,16 @@
                   ErrorNotification();
                 }}
             })
+        }
+        let infoclick = 0;
+        function infobox(){
+          if(infoclick==0){
+          document.querySelector(".info-box").style.display='block';
+          infoclick=1;
+        }else{
+          document.querySelector(".info-box").style.display='none';
+          infoclick=0;
+        }
+    
         }
     </script>

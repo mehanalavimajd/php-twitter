@@ -23,8 +23,7 @@
 
     <header>
       <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
-    
-      <a href="#"><h1 class="site-title">
+      <a href="/php-twitter" class="mainlink"><h1 class="site-title">
       <b>UTA</b> tweeter</a>
       </h1>
       <nav class="navbar">
@@ -33,9 +32,10 @@
           <li class="navitem navlink"><a href="/php-twitter/followings">Following</a></li>
           <li class="navitem navlink active"><a href="/php-twitter/trending">Trending</a></li>
           <li class="navitem navbar-search">
+
             <input type="text" id="navbar-search-input" placeholder="Search...">
             <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
-            
+            <img src="public/triangle.png" alt="" class="tri" onclick="infobox()">
             <?php
             session_start();
             if(isset($_SESSION['username'])){
@@ -48,7 +48,9 @@
             echo "<a id=\"username\" href=\"/php-twitter/login\">Login</a>";
           }
           ?>
-            
+            <div class="info-box">
+              <a href='/php-twitter/logout'>Logout</a>
+            </div>
             
           </li>
         </ul>
@@ -185,5 +187,16 @@
                   ErrorNotification();
                 }}
             })
+        }
+        let infoclick = 0;
+        function infobox(){
+          if(infoclick==0){
+          document.querySelector(".info-box").style.display='block';
+          infoclick=1;
+        }else{
+          document.querySelector(".info-box").style.display='none';
+          infoclick=0;
+        }
+    
         }
     </script>

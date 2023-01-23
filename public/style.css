@@ -28,7 +28,15 @@ a {
   background-color: #319df6;
   color: #fff;
 }
-
+.mainlink{
+  color:#fff;
+}
+.mainlink:hover{
+  color: #fff;
+}
+.mainlink:active{
+  color: #fff;
+}
 .navbar {
   background-color: #fff;
   font-size: 18px;
@@ -285,3 +293,12 @@ a:focus {
   margin-top:-5px;
   margin-left: 40px;
 }
+.info-box{
+  background-color: white;
+  width:100px;
+  text-align: center;
+  margin-left:330px;
+  margin-top:10px;
+  display: none;
+}
+.site-title
