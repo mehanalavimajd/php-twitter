@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
     <title>Tweeter</title>
-
+    <link rel="icon" href="/php-twitter/public/UTA-i.png">
     <!-- This is a 3rd-party stylesheet to make available the font family to be used for this page ("Roboto"). -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
 
@@ -30,14 +30,30 @@
       <nav class="navbar">
         <ul class="navlist">
           <li class="navitem navlink active "><a href="/php-twitter">Home</a></li>
+          <?php
+          session_start();
+          if(isset($_SESSION['username'])){?>
+          
           <li class="navitem navlink"><a href="/php-twitter/followings">Following</a></li>
+          <?php }else{?>
+          <li class="navitem navlink"><a href="/php-twitter/login">Following</a></li>
+         <?php 
+          }
+          ?>
+          <?php
+          if(isset($_SESSION['username'])){?>
           <li class="navitem navlink"><a href="/php-twitter/trending">Trending</a></li>
+          <?php }else{?>
+          <li class="navitem navlink"><a href="/php-twitter/login">Trending</a></li>
+         <?php 
+          }
+          ?>
+          
           <li class="navitem navbar-search">
             <input type="text" id="navbar-search-input" placeholder="Search...">
             <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
             <img src="public/triangle.png" alt="" class="tri" onclick="infobox()">
             <?php
-            session_start();
             if(isset($_SESSION['username'])){
               $username = $_SESSION['username'];
               echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
