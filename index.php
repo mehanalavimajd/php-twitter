@@ -10,7 +10,7 @@ include 'src/Steampixel/Route.php';
 // Define a global basepath
 define('BASEPATH',"/php-twitter/");
 
-
+$s = 1;
 // Add base route (startpage)
 Route::add('/', function () {
   include("./views/home.php");

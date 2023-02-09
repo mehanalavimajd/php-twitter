@@ -1,6 +1,7 @@
 <form action="/php-twitter/signup/" method="POST">
     <input type="text" name="username">
     <input type="password" name="pass">
+    <input type="email" name="email">
     <input type="submit">
 </form>
 <?php
@@ -15,9 +16,9 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['username'];
         $pass = $_POST['pass'];
-    
-        $sql = "INSERT INTO users (username, password)
-        VALUES ('$username', '$pass')";
+        $email = $_POST['email'];
+        $sql = "INSERT INTO users (username, password,email)
+        VALUES ('$username', '$pass','$email')";
     try {
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
