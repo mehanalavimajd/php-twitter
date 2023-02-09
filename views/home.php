@@ -246,5 +246,5 @@ ini_set('display_errors',1);
 if(isset($_GET['q'])){
   $query=$_GET['q'];
   clearTweets();
-  tweets("SELECT * FROM tweet WHERE (`text` LIKE \"$query\") ORDER BY date DESC LIMIT 0,25");
+  tweets("SELECT * FROM tweet WHERE (`text` LIKE \"%$query%\") ORDER BY date DESC LIMIT 0,25");
 }
