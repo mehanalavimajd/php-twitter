@@ -13,8 +13,9 @@ if($result->num_rows == 1){
     while($row = $result->fetch_assoc()){
         echo $row['username'];
         session_start();
-        if(isset($_SESSION['username'])){
-            include("views/user-real.php");}
+        if(isset($_SESSION['username']))
+            include("views/user-real.php");
+        
         $conn = new mysqli("localhost", "mehan", "mehan1388","login");
         $sql = "SELECT * FROM tweet where username='$user' ORDER BY date DESC LIMIT 0,25";
         $result = $conn->query($sql);

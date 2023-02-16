@@ -31,7 +31,7 @@ ini_set('display_errors',1);
 
     <a href="#">
       <h1 class="site-title">
-        <b>UTA</b> tweeter
+        <b>UTA</b> twitter
     </a>
     </h1>
     <nav class="navbar">
@@ -96,18 +96,16 @@ ini_set('display_errors',1);
           $id = $row['id'];
           echo "
         <article class=\"twit\">
-        <div class=\"twit-icon\">
-          <i class=\"fas fa-bullhorn\"></i>
-        </div>
         <div class=\"twit-content\">
+        <p class=\"twit-author\">
+        <a href=\"/php-twitter/user/$user\">$user</a>
+      </p>
           <p class=\"twit-text\">
             $text
           </p>
-          <p class=\"twit-author\">
-            <a href=\"/php-twitter/user/$user\">$user</a>
-          </p>
           <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
           <p id=\"like-num-$id\" class=\"like-num\"> </p>
+          <p id=\"date\" class=\"date\"> $date </p>
         </div>
       </article>
       ";
@@ -133,7 +131,7 @@ ini_set('display_errors',1);
 
   </main>
 
-  <button type="button" id="create-twit-button"><i class="fas fa-bullhorn"></i></button>
+  <button type="button" id="create-twit-button"><i class="fas fa-plus"></i></button>
 
   <div id="modal-backdrop" class="hidden"></div>
   <div id="create-twit-modal" class="hidden">
@@ -147,7 +145,7 @@ ini_set('display_errors',1);
         <div class="modal-body">
           <div class="twit-input-element">
             <label for="twit-text-input">Tweet text</label>
-            <input type="text" name="text">
+            <input maxlength="255" type="text" name="text">
           </div>
         </div>
 

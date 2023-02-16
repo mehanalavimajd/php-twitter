@@ -1,6 +1,8 @@
+<?php if($user != $_SESSION['username']){ ?>
 <button id="follow-btn" onclick="follow('<?php echo $user ?>')">
     Follow
 </button>
+<?php } ?>
 <p>followers:</p> <p id="f-num"></p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
@@ -13,7 +15,7 @@ $.ajax({
             console.log(msg);
             document.getElementById("f-num").innerText=msg.split("-")[1];
             let x = "unfollow"?String(msg).includes("u"):"follow";
-            if(x)
+            if (x)
                 document.getElementById('follow-btn').innerText="Unfollow";
             else
                 document.getElementById('follow-btn').innerText="Follow";
