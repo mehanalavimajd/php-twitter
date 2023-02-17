@@ -85,8 +85,9 @@ ini_set('display_errors',1);
     function tweets($sql)
     {
       $conn = new mysqli("localhost", "mehan", "mehan1388", "login");
-      $result = $conn->query($sql);
 
+      $result = $conn->query($sql);
+      
       if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
@@ -94,9 +95,15 @@ ini_set('display_errors',1);
           $text = $row['text'];
           $date = $row['date'];
           $id = $row['id'];
+          $profile = "";
+          $result2 = $conn->query("SELECT profile FROM users WHERE username='$user'");
+          while ($row2 = $result2->fetch_assoc()) {
+            $profile=$row2['profile'];
+          }
           echo "
         <article class=\"twit\">
         <div class=\"twit-content\">
+        <img class=\"twit-avatar\" src=\"$profile\"></img>
         <p class=\"twit-author\">
         <a href=\"/php-twitter/user/$user\">$user</a>
       </p>
