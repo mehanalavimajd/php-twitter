@@ -71,10 +71,10 @@
             $f = $row['following'];
         }
     }
+    $de = json_decode($f,true)['data'];
     $array = explode(",",$f ?? '');
-    array_pop($array);
     $sql = "SELECT * FROM tweet WHERE username IN ('" 
-     . implode("','", $array) 
+     . implode("','", $de) 
      . "')". "ORDER BY DATE DESC LIMIT 0,25";
     $result = $conn->query($sql);
   
