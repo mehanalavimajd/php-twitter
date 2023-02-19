@@ -1,7 +1,7 @@
 <!-- bunch of cdn -->
 <?php
-ini_set('error_reporting',E_ALL);
-ini_set('display_errors',1);
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <!DOCTYPE html>
@@ -87,7 +87,7 @@ ini_set('display_errors',1);
       $conn = new mysqli("localhost", "mehan", "mehan1388", "login");
 
       $result = $conn->query($sql);
-      
+
       if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
@@ -98,7 +98,7 @@ ini_set('display_errors',1);
           $profile = "";
           $result2 = $conn->query("SELECT profile FROM users WHERE username='$user'");
           while ($row2 = $result2->fetch_assoc()) {
-            $profile=$row2['profile'];
+            $profile = $row2['profile'];
           }
           echo "
         <article class=\"twit\">
@@ -112,6 +112,12 @@ ini_set('display_errors',1);
           </p>
           <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
           <p id=\"like-num-$id\" class=\"like-num\"> </p>
+          ";
+          if ($user === $_SESSION['username']) {
+            echo "
+          <p id=\"delete-$id\" class=\"delete\">Delete</p>";
+          }
+          echo " 
           <p id=\"date\" class=\"date\"> $date </p>
         </div>
       </article>
@@ -242,14 +248,30 @@ ini_set('display_errors',1);
     }
   }
   // search feature
-  $('.search').change(function(e){
-    var q=$('.search').val();
-    window.location="/php-twitter?q="+q
+  $('.search').change(function(e) {
+    var q = $('.search').val();
+    window.location = "/php-twitter?q=" + q
   })
+  let del=document.querySelectorAll(".delete")
+  for (let o = 0; o < del.length; o++) {
+    const element = del[o];
+    let id = element.id.split("-")[1]
+    element.addEventListener("click",(e)=>{
+    $.ajax({
+      type: "POST",
+      url: "api/delete.php",
+      data: "id=" + id,
+      dataType: "text",
+      success: function(msg) {
+        console.log(msg);
+      }
+    })
+  })}
 </script>
+
 <?php
-if(isset($_GET['q'])){
-  $query=$_GET['q'];
+if (isset($_GET['q'])) {
+  $query = $_GET['q'];
   clearTweets();
   tweets("SELECT * FROM tweet WHERE (`text` LIKE \"%$query%\") ORDER BY date DESC LIMIT 0,25");
 }
