@@ -109,10 +109,15 @@ ini_set('display_errors', 1);
           </p>
           <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
           <p id=\"like-num-$id\" class=\"like-num\"> </p>
-          <p id=\"date\" class=\"date\"> $date </p>
-        </div>
-      </article>
       ";
+      if ($user === $_SESSION['username']) {
+        echo "
+      <p id=\"delete-$id\" class=\"delete\">Delete</p>";
+      }
+      echo " 
+      <p id=\"date\" class=\"date\"> $date </p>
+      </div>
+    </article>";
       }
     } else {
       echo "0 results";
@@ -229,6 +234,21 @@ ini_set('display_errors', 1);
     var q = $('.search').val();
     window.location = "/php-twitter?q=" + q
   })
+  let del=document.querySelectorAll(".delete")
+  for (let o = 0; o < del.length; o++) {
+    const element = del[o];
+    let id = element.id.split("-")[1]
+    element.addEventListener("click",(e)=>{
+    $.ajax({
+      type: "POST",
+      url: "api/delete.php",
+      data: "id=" + id,
+      dataType: "text",
+      success: function(msg) {
+        console.log(msg);
+      }
+    })
+  })}
 </script>
 <?php
 if (isset($_GET['q'])) {
