@@ -322,3 +322,8 @@ a:focus {
   font-family: Ubuntu;
   color: #0b68b4;
 }
+.delete{
+  color:red;
+  margin-top: -70px;
+  margin-left:40px;
+}

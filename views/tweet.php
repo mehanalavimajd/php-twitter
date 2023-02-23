@@ -36,31 +36,14 @@ ini_set('display_errors', 1);
     </h1>
     <nav class="navbar">
       <ul class="navlist">
-        <li class="navitem navlink active "><a href="/php-twitter">Home</a></li>
-        <?php
-        session_start();
-        if (isset($_SESSION['username'])) { ?>
 
-          <li class="navitem navlink"><a href="/php-twitter/followings">Following</a></li>
-        <?php } else { ?>
-          <li class="navitem navlink"><a href="/php-twitter/login">Following</a></li>
-        <?php
-        }
-        ?>
-        <?php
-        if (isset($_SESSION['username'])) { ?>
-          <li class="navitem navlink"><a href="/php-twitter/trending">Trending</a></li>
-        <?php } else { ?>
-          <li class="navitem navlink"><a href="/php-twitter/login">Trending</a></li>
-        <?php
-        }
-        ?>
 
         <li class="navitem navbar-search">
           <input type="text" id="navbar-search-input" class="search" placeholder="Search...">
           <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
           <img src="public/triangle.png" alt="" class="tri" onclick="infobox()">
           <?php
+          session_start();
           if (isset($_SESSION['username'])) {
             $username = $_SESSION['username'];
             echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
@@ -100,6 +83,8 @@ ini_set('display_errors', 1);
           while ($row2 = $result2->fetch_assoc()) {
             $profile = $row2['profile'];
           }
+          if ($profile === "public/user.png") 
+            $profile="http://localhost/php-twitter/public/user.png";
           echo "
         <article class=\"twit\">
         <div class=\"twit-content\">
@@ -124,10 +109,11 @@ ini_set('display_errors', 1);
       ";
         }
       } else {
-        echo "0 results";
+        echo "tweet not found";
       }
     }
-    tweets("SELECT * FROM tweet ORDER BY date DESC LIMIT 0,25");
+    $id = $_GET['id'];
+    tweets("SELECT * FROM tweet WHERE id=$id");
     function clearTweets()
     {
     ?>
@@ -154,7 +140,7 @@ ini_set('display_errors', 1);
         <h3>Create a Tweet</h3>
         <button type="button" class="modal-close-button">&times;</button>
       </div>
-      <form action="/php-twitter/api/tweet" method="post">
+      <form action="/php-twitter/http://localhost:/php-twitter/api/tweet" method="post">
         <div class="modal-body">
           <div class="twit-input-element">
             <label for="twit-text-input">Tweet text</label>
@@ -200,7 +186,7 @@ ini_set('display_errors', 1);
     console.log(id);
     $.ajax({
       type: "POST",
-      url: "api/like-count.php",
+      url: "http://localhost:/php-twitter/api/like-count.php",
       data: "id=" + id,
       dataType: "text",
       success: function(msg) {
@@ -212,7 +198,7 @@ ini_set('display_errors', 1);
   function like(id) {
     $.ajax({
       type: "POST",
-      url: "api/like.php",
+      url: "http://localhost:/php-twitter/api/like.php",
       data: "id=" + id,
       dataType: "text",
       success: function(msg) {
@@ -259,7 +245,7 @@ ini_set('display_errors', 1);
     element.addEventListener("click",(e)=>{
     $.ajax({
       type: "POST",
-      url: "api/delete.php",
+      url: "http://localhost:/php-twitter/api/delete.php",
       data: "id=" + id,
       dataType: "text",
       success: function(msg) {

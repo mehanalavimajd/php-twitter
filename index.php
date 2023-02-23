@@ -42,6 +42,10 @@ Route::add("/followings", function () {
 Route::add("/trending", function () {
   include("./views/trending.php");
 });
+Route::add("/tweet/([0-9-]+$)", function ($slug) {
+  $_GET['id'] = $slug;
+  include("./views/tweet.php");
+});
 Route::pathNotFound(function($path) {
   // Do not forget to send a status header back to the client
   // The router will not send any headers by default

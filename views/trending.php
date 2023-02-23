@@ -246,6 +246,7 @@ ini_set('display_errors', 1);
       dataType: "text",
       success: function(msg) {
         console.log(msg);
+        location.reload()
       }
     })
   })}
