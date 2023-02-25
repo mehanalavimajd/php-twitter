@@ -3,9 +3,9 @@
 - [X] Trending page
 - [X] logout style
 - [ ] Fixing link styles in home
-- [ ] updating tweet style
-
+- [X] updating tweet style
+- [ ] profile page style
 **Feature**: would be better if could be done
-- [ ] adding search option
+- [X] adding search option
 - [ ] adding notification
 - [ ] fixing security bugs(CSRF, XSS, SQLi, ...)

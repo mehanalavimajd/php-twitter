@@ -327,3 +327,24 @@ a:focus {
   margin-top: -70px;
   margin-left:40px;
 }
+html,body
+{
+    height: 100%;
+    overflow-x: hidden;
+}
+.card ,.row
+{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 33%;
+    height: 100%;
+    margin-top: auto;
+}
+.card-body{
+    margin-top: 33%;
+}
+.usertwit{
+  width:55%;
+  margin-left: 40%;
+}

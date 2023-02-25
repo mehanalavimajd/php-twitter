@@ -1,6 +1,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="/php-twitter/public/style.css" media="screen">
 <section style="background-color: #eee;">
 
 
@@ -46,19 +46,41 @@ if($result->num_rows == 1){
         if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            $user = $row['username'];
-            $text = $row['text'];
-            $date = $row['date'];
-            $id = $row['id'];
-            echo "
-            <p style=\"opacity:40%\">$date</p>
-            <b> $user wrote:</b>
-            <p style=\"margin-left:40px\"> $text </p>
-            <button class=\"like\" id=\"like-$id\" onclick=\"like($id)\">like</button>
-            <p id=\"like-num-$id\"> </p>
-            ";}
-        } else {
-        echo "no tweet";
+          $user = $row['username'];
+          $text = $row['text'];
+          $date = $row['date'];
+          $id = $row['id'];
+          $profile = "";
+          $result2 = $conn->query("SELECT profile FROM users WHERE username='$user'");
+          while ($row2 = $result2->fetch_assoc()) {
+            $profile = $row2['profile'];
+          }
+          echo "
+          <article class=\"twit usertwit\">
+          <div class=\"twit-content\">
+          <img class=\"twit-avatar\" src=\"$profile\"></img>
+          <p class=\"twit-author\">
+          <a href=\"/php-twitter/user/$user\">$user</a>
+        </p>
+            <p class=\"twit-text\">
+              $text
+            </p>
+            <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
+            <p id=\"like-num-$id\" class=\"like-num\"> </p>
+        ";
+        if(isset($_SESSION['username'])){
+        if ($user === $_SESSION['username']) {
+          echo "
+        <p id=\"delete-$id\" class=\"delete\">Delete</p>";
+        }
+      }
+        echo " 
+        <p id=\"date\" class=\"date\"> $date </p>
+        </div>
+      </article>";
+        }
+      } else {
+        echo "0 results";
         }
     }
 }else{
