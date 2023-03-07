@@ -14,6 +14,7 @@ $sql_query = "SELECT * FROM users WHERE username='$user'";
 $result = $conn->query($sql_query);
 if ($result->num_rows == 1) {
     while ($row = $result->fetch_assoc()) {
+        $profile=$row['profile']
 ?>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -24,11 +25,11 @@ if ($result->num_rows == 1) {
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                            <img src="http://localhost/php-twitter/<?php echo $profile?>">
                             <h3 class="my-3"><?php echo $user; ?></h5>
                                 <p class="text-muted mb-1">Full Stack Developer</p>
                                 <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                                <p class="text-muted mb-4" id="f-num">followers: 1</p>
+                                <p class="mb-4" id="f-num"></p>
                                 <div class="d-flex justify-content-center mb-2">
                                     <button type="button" id="follow-btn" class="btn btn-primary" onclick="follow('<?php echo $user; ?>')">Follow</button>
                                     <button type="button" class="btn btn-outline-primary ms-1">Message</button>

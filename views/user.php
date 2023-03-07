@@ -36,7 +36,7 @@ if ($result->num_rows == 1) {
         echo "
           <article class=\"twit usertwit\">
           <div class=\"twit-content\">
-          <img class=\"twit-avatar\" src=\"$profile\"></img>
+          <img class=\"twit-avatar\" src=\"http://localhost/php-twitter/$profile\"></img>
           <p class=\"twit-author\">
           <a href=\"/php-twitter/user/$user\">$user</a>
         </p>

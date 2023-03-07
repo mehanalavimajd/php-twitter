@@ -33,7 +33,7 @@ if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOA
 
     if (in_array($fileExtension, $allowedfileExtensions)) {
         // directory in which the uploaded file will be moved
-        $uploadFileDir = './upload/';
+        $uploadFileDir = 'upload/';
         $dest_path = $uploadFileDir . $newFileName;
         
         if (move_uploaded_file($fileTmpPath, $dest_path)) {

@@ -117,6 +117,7 @@ a:focus {
   margin: 50px 10%;
   display: flex;
   flex-wrap: wrap;
+  
 }
 
 .twit {
@@ -127,6 +128,7 @@ a:focus {
   border: 1px solid #dadada;
   border-radius: 2px;
   background-color: #fff;
+  margin-top: 40px;
 }
 
 .twit-icon {
