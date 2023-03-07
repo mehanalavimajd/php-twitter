@@ -6,8 +6,11 @@ session_start();
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
-$user = $_POST['user'];
-$user2 = $_SESSION['username'];
+  $user = $_POST['user'];
+$u=explode(" ",$user);
+$user = $u[0];
+$user2 = $u[1];
+
 $sql = "SELECT * FROM users where username='$user'";
 $result = $conn->query($sql);
 

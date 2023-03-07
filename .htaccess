@@ -13,3 +13,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
  
 # Push every request to index.php
 RewriteRule ^(.*)$ index.php [QSA]
+
+<IfModule mod_headers.c>
+Header set Access-Control-Allow-Origin "*"
+</IfModule>
