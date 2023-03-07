@@ -66,6 +66,8 @@ ini_set('display_errors', 1);
             echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
           ?>
             <div class="info-box">
+              <a href='/php-twitter/edit'>Edit profile</a>
+              <div style="width:100%; height:1px; background-color: black;"></div>
               <a href='/php-twitter/logout'>Logout</a>
             </div>
           <?php
@@ -252,22 +254,23 @@ ini_set('display_errors', 1);
     var q = $('.search').val();
     window.location = "/php-twitter?q=" + q
   })
-  let del=document.querySelectorAll(".delete")
+  let del = document.querySelectorAll(".delete")
   for (let o = 0; o < del.length; o++) {
     const element = del[o];
     let id = element.id.split("-")[1]
-    element.addEventListener("click",(e)=>{
-    $.ajax({
-      type: "POST",
-      url: "api/delete.php",
-      data: "id=" + id,
-      dataType: "text",
-      success: function(msg) {
-        console.log(msg);
-        location.reload()
-      }
+    element.addEventListener("click", (e) => {
+      $.ajax({
+        type: "POST",
+        url: "api/delete.php",
+        data: "id=" + id,
+        dataType: "text",
+        success: function(msg) {
+          console.log(msg);
+          location.reload()
+        }
+      })
     })
-  })}
+  }
 </script>
 
 <?php
