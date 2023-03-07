@@ -66,6 +66,8 @@ ini_set('display_errors', 1);
             echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
           ?>
             <div class="info-box">
+              <a href='/php-twitter/edit'>Edit profile</a>
+              <div style="width:100%; height:1px; background-color: black;"></div>
               <a href='/php-twitter/logout'>Logout</a>
             </div>
           <?php

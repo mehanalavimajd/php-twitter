@@ -18,14 +18,14 @@ if ($result->num_rows == 1) {
 ?>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="/php-twitter/public/style.css" media="screen">
         <section style="background-color: #eee;">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            <img src="http://localhost/php-twitter/<?php echo $profile?>">
+                            <img style="width:100px; height:100px;" src="http://localhost/php-twitter/<?php echo $profile?>">
                             <h3 class="my-3"><?php echo $user; ?></h5>
                                 <p class="text-muted mb-1">Full Stack Developer</p>
                                 <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>

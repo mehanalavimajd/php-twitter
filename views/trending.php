@@ -66,6 +66,8 @@ ini_set('display_errors', 1);
             echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
           ?>
             <div class="info-box">
+              <a href='/php-twitter/edit'>Edit profile</a>
+              <div style="width:100%; height:1px; background-color: black;"></div>
               <a href='/php-twitter/logout'>Logout</a>
             </div>
           <?php
@@ -82,7 +84,7 @@ ini_set('display_errors', 1);
   <main class="twit-container">
 
     <?php
-    $conn = new mysqli("localhost", "mehan", "mehan1388","login");
+    $conn = new mysqli("localhost", "mehan", "mehan1388", "login");
     $sql = "SELECT * FROM tweet ORDER BY likes DESC LIMIT 0,25";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -110,11 +112,11 @@ ini_set('display_errors', 1);
           <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
           <p id=\"like-num-$id\" class=\"like-num\"> </p>
       ";
-      if ($user === $_SESSION['username']) {
-        echo "
+        if ($user === $_SESSION['username']) {
+          echo "
       <p id=\"delete-$id\" class=\"delete\">Delete</p>";
-      }
-      echo " 
+        }
+        echo " 
       <p id=\"date\" class=\"date\"> $date </p>
       </div>
     </article>";
@@ -234,22 +236,23 @@ ini_set('display_errors', 1);
     var q = $('.search').val();
     window.location = "/php-twitter?q=" + q
   })
-  let del=document.querySelectorAll(".delete")
+  let del = document.querySelectorAll(".delete")
   for (let o = 0; o < del.length; o++) {
     const element = del[o];
     let id = element.id.split("-")[1]
-    element.addEventListener("click",(e)=>{
-    $.ajax({
-      type: "POST",
-      url: "api/delete.php",
-      data: "id=" + id,
-      dataType: "text",
-      success: function(msg) {
-        console.log(msg);
-        location.reload()
-      }
+    element.addEventListener("click", (e) => {
+      $.ajax({
+        type: "POST",
+        url: "api/delete.php",
+        data: "id=" + id,
+        dataType: "text",
+        success: function(msg) {
+          console.log(msg);
+          location.reload()
+        }
+      })
     })
-  })}
+  }
 </script>
 <?php
 if (isset($_GET['q'])) {
