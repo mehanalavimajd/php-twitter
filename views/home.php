@@ -3,7 +3,7 @@
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="/php-twitter/public/jquery.js"></script>
 <!DOCTYPE html>
 <html>
 
