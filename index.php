@@ -44,7 +44,7 @@ Route::add("/trending", function () {
 });
 Route::add("/edit", function () {
   include("./views/edit.php");
-});
+},['get','post']);
 Route::add("/tweet/([0-9-]+$)", function ($slug) {
   $_GET['id'] = $slug;
   include("./views/tweet.php");
