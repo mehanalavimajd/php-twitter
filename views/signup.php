@@ -1,63 +1,72 @@
-<form action="/php-twitter/signup/" method="POST" enctype="multipart/form-data">
-    <input type="text" name="username">
-    <input type="password" name="pass">
-    <input type="email" name="email">
-    <label for="input">Avatar</label>
-    <input type="file" name="uploadedFile" id="filee">
-    <input type="submit">
-</form>
-<?php
-error_reporting(-1);
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
+<!DOCTYPE html>
+<html lang="en">
 
-
-$message = '';
-$dest_path='';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOAD_ERR_OK) {
-    // get details of the uploaded file
-    $fileTmpPath = $_FILES['uploadedFile']['tmp_name'];
-    $fileName = $_FILES['uploadedFile']['name'];
-    $fileSize = $_FILES['uploadedFile']['size'];
-    $fileType = $_FILES['uploadedFile']['type'];
-    $fileNameCmps = explode(".", $fileName);
-    $fileExtension = strtolower(end($fileNameCmps));
-    if(!is_dir("./upload/"))
-        mkdir("./upload/");
-    // sanitize file-name
-    $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
-
-    // check if file has one of the following extensions
-    $allowedfileExtensions = array('jpg', 'gif', 'png','jpeg');
-
-    if (in_array($fileExtension, $allowedfileExtensions)) {
-        // directory in which the uploaded file will be moved
-        $uploadFileDir = 'upload/';
-        $dest_path = $uploadFileDir . $newFileName;
-        
-        if (move_uploaded_file($fileTmpPath, $dest_path)) {
-            $message = 'File is successfully uploaded.';
-        } else {
-            $message = 'There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.';
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTA tweeter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/php-twitter/public/login-prefix.css">
+    <style>
+        .srouce {
+            text-align: center;
+            color: #ffffff;
+            padding: 10px;
         }
-    } else {
-        $message = 'Upload failed. Allowed file types: ' . implode(',', $allowedfileExtensions);
-    }
-} else {
-    $message = 'There is some error in the file upload. Please check the following error.<br>';
-    $message .= 'Error:' . $_FILES['uploadedFile']['error'];
-}
-$_SESSION['message'] = $message;
-echo $dest_path;
-if($dest_path==="")
-    $dest_path="public/user.png";
-}
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <div class="form-container">
+
+            <div class="srouce"><a>localhost/php-twitter</a></div>
+
+            <div class="form-body">
+                <h2 class="title">Start Tweeting today</h2>
+                <div class="social-login">
+                    <ul>
+                        <li class="google"><a href="#"></a></li>
+                        <li class="fb"><a href="#"></a></li>
+                    </ul>
+                </div><!-- SOCIAL LOGIN -->
+                <form action="//localhost/php-twitter/login" method="POST" class="the-form">
+
+                    <label for="email">Username</label>
+                    <input type="text" name="username" id="email" placeholder="Enter your user">
+
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter your email">
+
+                    <label for="password">Password</label>
+                    <input type="password" name="pass" id="password" placeholder="Enter your password">
+
+                    <input type="submit" value="Log In">
+
+                </form>
+
+            </div><!-- FORM BODY-->
+
+            <div class="form-footer">
+                <div>
+                    <span>Don't have an account?</span> <a href="/php-twitter/signup">Sign Up</a>
+                </div>
+            </div><!-- FORM FOOTER -->
+
+        </div><!-- FORM CONTAINER -->
+    </div>
+
+</body>
+
+</html>
+<?php
 $conn = new mysqli("localhost", "mehan", "mehan1388", "login");
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$dest_path="public/user.png";
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -79,10 +88,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($conn->errno == 1062) {
             echo "duplicate";
             die();
-        }else{
+        } else {
             echo $conn->error;
         }
     }
-    
 }
 ?>
