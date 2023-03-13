@@ -86,13 +86,14 @@
         }
         // ----------------------- likes
         setTimeout(() => {
-            let buttons = document.querySelectorAll('button')
+            let buttons = document.querySelectorAll('i')
             console.log(buttons);
             for (let i = 0; i < buttons.length; i++) {
                 const element = buttons[i];
                 let id = parseInt(element.id.replace("like-", ""))
                 if (localStorage.getItem("liked-" + id) == 'true') {
-                    element.style.backgroundColor = "red";
+                    document.querySelector("#like-" + id).classList.replace("fa-regular", "fa-solid")
+                     document.querySelector("#like-" + id).style.color = 'red';
                     console.log(id);
                 }
                 $.ajax({
@@ -101,12 +102,7 @@
                     data: "id=" + id,
                     dataType: "text",
                     success: function(msg) {
-                        $(document).ready(
-                            function() {
-                                document.getElementById("like-num-" + id).innerText = msg;
-                            }
-                        );
-
+                        document.getElementById("like-num-"+id).innerText=msg;
                     }
                 })
             }

@@ -7,7 +7,7 @@ session_start();
     die("Connection failed: " . $conn->connect_error);
   }
 $id = $_POST['id'];
-$sql = "SELECT * FROM tweet where id=$id";
+$sql = "SELECT * FROM tweet where id='$id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
