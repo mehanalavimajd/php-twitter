@@ -48,6 +48,7 @@ if ($result->num_rows == 1) {
             <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
             <p id=\"like-num-$id\" class=\"like-num\"> </p>
             <i class=\"fa-solid fa-retweet retweet\" id=\"retweet-$id\"></i>
+            <i class=\"fa-solid fa-share-nodes share\" id=\"share-$id\"></i>
         ";
         if (isset($_SESSION['username'])) {
           if ($user === $_SESSION['username']) {
@@ -63,6 +64,7 @@ if ($result->num_rows == 1) {
     } else {
       echo "0 results";
     }
+    
   }
 } else {
   echo "user $user not found :(";

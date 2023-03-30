@@ -33,7 +33,10 @@ ini_set('display_errors', 1);
       <h1 class="site-title">
         <b>UTA</b> twitter
     </a>
-    </h1>
+    </h1>        <div class="alert" style="display:none">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      This is an alert box.
+    </div>
     <nav class="navbar">
       <ul class="navlist">
         <li class="navitem navlink "><a href="/php-twitter">Home</a></li>
@@ -114,6 +117,7 @@ ini_set('display_errors', 1);
           <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
           <p id=\"like-num-$id\" class=\"like-num\"> </p>
           <i class=\"fa-solid fa-retweet retweet\" id=\"retweet-$id\"></i>
+          <i class=\"fa-solid fa-share-nodes share\" id=\"share-$id\"></i>
       ";
         if ($user === $_SESSION['username']) {
           echo "
@@ -273,6 +277,18 @@ ini_set('display_errors', 1);
       })
     })
   }
+  let share = document.querySelectorAll(".share")
+  for (let o = 0; o < share.length; o++) {
+    const element = share[o];
+    let id = element.id.split("-")[1];
+    element.addEventListener("click", (e) => {
+      let alert = document.querySelector(".alert")
+      if(alert.style.display=="none"){
+        alert.style.display="block";
+      }
+      alert.innerHTML='<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/'+id;
+      
+    })}
 </script>
 <?php
 if (isset($_GET['q'])) {

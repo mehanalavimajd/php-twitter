@@ -34,6 +34,10 @@ ini_set('display_errors', 1);
         <b>UTA</b> twitter
     </a>
     </h1>
+    <div class="alert" style="display:none">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      This is an alert box.
+    </div>
     <nav class="navbar">
       <ul class="navlist">
         <li class="navitem navlink active "><a href="/php-twitter">Home</a></li>
@@ -108,7 +112,8 @@ ini_set('display_errors', 1);
         <div class=\"twit-content\">
         <img class=\"twit-avatar\" src=\"$profile\"></img>
         <p class=\"twit-author\">
-        <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if($retweet!==NULL) echo "retweeted from <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>"; echo "
+        <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if ($retweet !== NULL) echo "retweeted from <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>";
+                                                                  echo "
       </p>
           <p>
             <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
@@ -121,24 +126,24 @@ ini_set('display_errors', 1);
           <i class=\"fa-solid fa-retweet retweet\" id=\"retweet-$id\"></i>
           <i class=\"fa-solid fa-share-nodes share\" id=\"share-$id\"></i>
           ";
-          if ($user === $_SESSION['username']) {
-            echo "
+                                                                  if ($user === $_SESSION['username']) {
+                                                                    echo "
           <p id=\"delete-$id\" class=\"delete\">Delete</p>";
-          }
-          echo " 
+                                                                  }
+                                                                  echo " 
           <p id=\"date\" class=\"date\"> $date </p>
         </div>
       </article>
       ";
-        }
-      } else {
-        echo "0 results";
-      }
-    }
-    tweets("SELECT * FROM tweet ORDER BY date DESC LIMIT 0,25");
-    function clearTweets()
-    {
-    ?>
+                                                                }
+                                                              } else {
+                                                                echo "0 results";
+                                                              }
+                                                            }
+                                                            tweets("SELECT * FROM tweet ORDER BY date DESC LIMIT 0,25");
+                                                            function clearTweets()
+                                                            {
+                                                                  ?>
       <script>
         let twits = document.querySelectorAll("article");
         for (let i = 0; i < twits.length; i++) {
@@ -147,7 +152,7 @@ ini_set('display_errors', 1);
         }
       </script>
     <?php
-    }
+                                                            }
     ?>
 
   </main>
@@ -293,6 +298,18 @@ ini_set('display_errors', 1);
       })
     })
   }
+  let share = document.querySelectorAll(".share")
+  for (let o = 0; o < share.length; o++) {
+    const element = share[o];
+    let id = element.id.split("-")[1];
+    element.addEventListener("click", (e) => {
+      let alert = document.querySelector(".alert")
+      if(alert.style.display=="none"){
+        alert.style.display="block";
+      }
+      alert.innerHTML='<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/'+id;
+      
+    })}
 </script>
 
 <?php

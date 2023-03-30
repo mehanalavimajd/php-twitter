@@ -1,5 +1,8 @@
 
-<h1>Blog</h1>
+<h1>Blog</h1> <br>      <div class="alert" style="display:none">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      This is an alert box.
+    </div>
 
 <div>
   Hey! Read my new blog post with this cool slug: "<?=$slug ?>"
