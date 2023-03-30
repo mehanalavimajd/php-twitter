@@ -29,7 +29,7 @@ ini_set('display_errors', 1);
   <header>
     <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
 
-    <a href="#">
+    <a href="//localhost/php-twitter">
       <h1 class="site-title">
         <b>UTA</b> twitter
     </a>
@@ -92,9 +92,11 @@ ini_set('display_errors', 1);
         <p class=\"twit-author\">
         <a href=\"/php-twitter/user/$user\">$user</a>
       </p>
-          <p class=\"twit-text\">
+      <p>
+          <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
             $text
-          </p>
+          </a>
+        </p>
           <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
           <p id=\"like-num-$id\" class=\"like-num\"> </p>
           ";
