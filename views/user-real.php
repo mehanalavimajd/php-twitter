@@ -33,10 +33,12 @@
                                     <p class="text-muted mb-1"><?php echo $bio; ?></p>
                                     <p class="text-muted mb-4"><?php echo $city;?></p>
                                     <p class="mb-4" id="f-num"></p>
+                                    <?php if($_SESSION['username']!=$user){?>
                                     <div class="d-flex justify-content-center mb-2">
                                         <button type="button" id="follow-btn" class="btn btn-primary" onclick="follow('<?php echo $user; ?>')">Follow</button>
                                         <button type="button" class="btn btn-outline-primary ms-1">Message</button>
                                     </div>
+                                    <?php } ?>
                             </div>
                         </div>
 
