@@ -4,7 +4,7 @@
 - [X] logout style
 - [ ] Fixing link styles in home
 - [X] updating tweet style
-- [ ] profile page style
+- [X] profile page style
 **Feature**: would be better if could be done
 - [X] adding search option
 - [ ] adding notification

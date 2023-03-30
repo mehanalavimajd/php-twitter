@@ -17,7 +17,7 @@
         while ($row = $result->fetch_assoc()) {
             $profile = $row['profile'];
             $bio = $row['bio'];
-            $city=$row['city'];
+            $city = $row['city'];
     ?>
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css" crossorigin="anonymous">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -31,13 +31,13 @@
                                 <img style="width:100px; height:100px;" src="http://localhost/php-twitter/<?php echo $profile ?>">
                                 <h3 class="my-3"><?php echo $user; ?></h5>
                                     <p class="text-muted mb-1"><?php echo $bio; ?></p>
-                                    <p class="text-muted mb-4"><?php echo $city;?></p>
+                                    <p class="text-muted mb-4"><?php echo $city; ?></p>
                                     <p class="mb-4" id="f-num"></p>
-                                    <?php if($_SESSION['username']!=$user){?>
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <button type="button" id="follow-btn" class="btn btn-primary" onclick="follow('<?php echo $user; ?>')">Follow</button>
-                                        <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-                                    </div>
+                                    <?php if ($_SESSION['username'] != $user) { ?>
+                                        <div class="d-flex justify-content-center mb-2">
+                                            <button type="button" id="follow-btn" class="btn btn-primary" onclick="follow('<?php echo $user; ?>')">Follow</button>
+                                            <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                                        </div>
                                     <?php } ?>
                             </div>
                         </div>
@@ -47,6 +47,7 @@
     } ?>
     <script src="/php-twitter/public/jquery.js"></script>
     <script>
+        <?php if(isset($_SESSION['username'])){ ?>
         $.ajax({
 
             type: "POST",
@@ -65,7 +66,7 @@
                 })
             }
         })
-
+        
         function follow(u) {
             $.ajax({
                 type: "POST",
@@ -86,6 +87,7 @@
                 }
             })
         }
+        <?php } ?>
         // ----------------------- likes
         setTimeout(() => {
             let buttons = document.querySelectorAll('i')
@@ -95,7 +97,7 @@
                 let id = parseInt(element.id.replace("like-", ""))
                 if (localStorage.getItem("liked-" + id) == 'true') {
                     document.querySelector("#like-" + id).classList.replace("fa-regular", "fa-solid")
-                     document.querySelector("#like-" + id).style.color = 'red';
+                    document.querySelector("#like-" + id).style.color = 'red';
                     console.log(id);
                 }
                 $.ajax({
@@ -104,7 +106,10 @@
                     data: "id=" + id,
                     dataType: "text",
                     success: function(msg) {
-                        document.getElementById("like-num-"+id).innerText=msg;
+                        setTimeout(() => {
+                            document.getElementById("like-num-" + id).innerText = msg;
+                        }, 1000);
+                        
                     }
                 })
             }
@@ -132,6 +137,24 @@
                 }
             })
         }
+        let ret = document.querySelectorAll(".retweet")
+        for (let o = 0; o < ret.length; o++) {
+            const element = ret[o];
+            let id = element.id.split("-")[1]
+            element.addEventListener("click", (e) => {
+                $.ajax({
+                    type: "POST",
+                    url: "api/retweet.php",
+                    data: "id=" + id,
+                    dataType: "text",
+                    success: function(msg) {
+                        console.log(msg);
+                        location.reload();
+                    }
+                })
+            })
+        }
+
     </script>
 </body>
 

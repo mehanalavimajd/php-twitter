@@ -9,7 +9,7 @@ $conn = new mysqli("localhost", "mehan", "mehan1388", "login");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT * FROM tweet where id=$id";
+$sql = "SELECT * FROM tweet where id='$id'";
 $result = $conn->query($sql);
 $username;
 if ($result->num_rows > 0) {

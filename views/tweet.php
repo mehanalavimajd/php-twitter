@@ -76,7 +76,7 @@ ini_set('display_errors', 1);
         while ($row = $result->fetch_assoc()) {
           $user = $row['username'];
           $text = $row['text'];
-          $date = $row['date'];
+          $date = $row['date']; $retweet = $row['retweet'];
           $id = $row['id'];
           $profile = "";
           $result2 = $conn->query("SELECT profile FROM users WHERE username='$user'");
@@ -90,7 +90,7 @@ ini_set('display_errors', 1);
         <div class=\"twit-content\">
         <img class=\"twit-avatar\" src=\"$profile\"></img>
         <p class=\"twit-author\">
-        <a href=\"/php-twitter/user/$user\">$user</a>
+        <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if($retweet!==NULL) echo "retweeted from <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>"; echo "
       </p>
       <p>
           <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
@@ -99,6 +99,7 @@ ini_set('display_errors', 1);
         </p>
           <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
           <p id=\"like-num-$id\" class=\"like-num\"> </p>
+          <i class=\"fa-solid fa-retweet retweet\" id=\"retweet-$id\"></i>
           ";
           if ($user === $_SESSION['username']) {
             echo "
