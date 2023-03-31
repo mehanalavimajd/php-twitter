@@ -42,7 +42,7 @@
                     <label for="password">Password</label>
                     <input type="password" name="pass" id="password" placeholder="Enter your password">
 
-                    <input type="submit" value="Log In">
+                    <input type="submit" value="Sign up">
 
                 </form>
 
