@@ -50,7 +50,7 @@
 
             <div class="form-footer">
                 <div>
-                    <span>Don't have an account?</span> <a href="/php-twitter/signup">Sign Up</a>
+                    <span>Already have an account?</span> <a href="/php-twitter/login">log in</a>
                 </div>
             </div><!-- FORM FOOTER -->
 
