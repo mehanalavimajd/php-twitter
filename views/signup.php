@@ -68,7 +68,7 @@ $conn = new mysqli("localhost", "mehan", "mehan1388", "login");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$dest_path="public/user.png";
+$dest_path = "public/user.png";
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -81,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "New record created successfully";
             $_SESSION['username'] = $username;
             $_SESSION['pass'] = $pass;
+            header("location: //localhost/php-twitter/");
             die();
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
