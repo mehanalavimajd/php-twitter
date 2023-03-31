@@ -304,12 +304,13 @@ ini_set('display_errors', 1);
     let id = element.id.split("-")[1];
     element.addEventListener("click", (e) => {
       let alert = document.querySelector(".alert")
-      if(alert.style.display=="none"){
-        alert.style.display="block";
+      if (alert.style.display == "none") {
+        alert.style.display = "block";
       }
-      alert.innerHTML='<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/'+id;
-      
-    })}
+      alert.innerHTML = '<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/' + id;
+
+    })
+  }
 </script>
 
 <?php

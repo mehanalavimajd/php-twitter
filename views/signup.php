@@ -31,7 +31,7 @@
                         <li class="fb"><a href="#"></a></li>
                     </ul>
                 </div><!-- SOCIAL LOGIN -->
-                <form action="//localhost/php-twitter/login" method="POST" class="the-form">
+                <form action="//localhost/php-twitter/signup" method="POST" class="the-form">
 
                     <label for="email">Username</label>
                     <input type="text" name="username" id="email" placeholder="Enter your user">
@@ -61,6 +61,8 @@
 
 </html>
 <?php
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
 $conn = new mysqli("localhost", "mehan", "mehan1388", "login");
 // Check connection
 if ($conn->connect_error) {
