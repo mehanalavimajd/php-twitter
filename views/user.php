@@ -34,6 +34,10 @@ if ($result->num_rows == 1) {
           $profile = $row2['profile'];
         }
         echo "
+        <div class=\"alert\" style=\"display:none\">
+        <span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span>
+        This is an alert box.
+      </div>
           <article class=\"twit usertwit\">
           <div class=\"twit-content\">
           <img class=\"twit-avatar\" src=\"http://localhost/php-twitter/$profile\"></img>

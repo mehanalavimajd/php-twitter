@@ -138,20 +138,6 @@
                 }
             })
         }
-
-        let share = document.querySelectorAll(".share")
-        for (let o = 0; o < share.length; o++) {
-            const element = share[o];
-            let id = element.id.split("-")[1];
-            element.addEventListener("click", (e) => {
-                let alert = document.querySelector(".alert")
-                if (alert.style.display == "none") {
-                    alert.style.display = "block";
-                }
-                alert.innerHTML = '<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/' + id;
-
-            })
-        }
         setTimeout(() => {
             let del = document.querySelectorAll(".delete")
             for (let o = 0; o < del.length; o++) {
@@ -185,6 +171,20 @@
                         }
                     })
                 })
+
+                let share = document.querySelectorAll(".share")
+                for (let o = 0; o < share.length; o++) {
+                    const element = share[o];
+                    let id = element.id.split("-")[1];
+                    element.addEventListener("click", (e) => {
+                        let alert = document.querySelector(".alert")
+                        if (alert.style.display == "none") {
+                            alert.style.display = "block";
+                        }
+                        alert.innerHTML = '<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/' + id;
+
+                    })
+                }
             }
         }, 1000);
     </script>
