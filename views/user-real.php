@@ -47,58 +47,59 @@
     } ?>
     <script src="/php-twitter/public/jquery.js"></script>
     <script>
-        <?php if(isset($_SESSION['username'])){ ?>
-        $.ajax({
-
-            type: "POST",
-            url: "http://localhost/php-twitter/api/follow-count.php",
-            data: "user=" + '<?php echo $user ?>' + ' ' + '<?php echo $_SESSION["username"] ?>',
-            dataType: "text",
-            success: function(msg) {
-                console.log(msg);
-                $(document).ready(() => {
-                    document.getElementById("f-num").innerText = "followers: " + msg.split("-")[1];
-                    let x = "unfollow" ? String(msg).includes("u") : "follow";
-                    if (x)
-                        document.getElementById('follow-btn').innerText = "Unfollow";
-                    else
-                        document.getElementById('follow-btn').innerText = "Follow";
-                })
-            }
-        })
-        
-        function follow(u) {
+        <?php if ($_SESSION['username'] !== $_GET['user']) { ?>
             $.ajax({
+
                 type: "POST",
-                url: "http://localhost/php-twitter/api/follow.php",
-                data: "u=" + u + ' ' + '<?php echo $_SESSION["username"] ?>',
+                url: "http://localhost/php-twitter/api/follow-count.php",
+                data: "user=" + '<?php echo $user ?>' + ' ' + '<?php echo $_SESSION["username"] ?>',
                 dataType: "text",
                 success: function(msg) {
-                    console.info(msg);
-                    setTimeout(() => {
-
-                    }, 200);
-                    document.getElementById("f-num").innerText = "followers: " + msg.split('-')[1];
-                    let x = "unfollow" ? String(msg).includes("u") : "follow";
-                    if (x)
-                        document.getElementById('follow-btn').innerText = "Follow";
-                    else
-                        document.getElementById('follow-btn').innerText = "UnFollow";
+                    console.log(msg);
+                    $(document).ready(() => {
+                        document.getElementById("f-num").innerText = "followers: " + msg.split("-")[1];
+                        let x = "unfollow" ? String(msg).includes("u") : "follow";
+                        if (x)
+                            document.getElementById('follow-btn').innerText = "Unfollow";
+                        else
+                            document.getElementById('follow-btn').innerText = "Follow";
+                    })
                 }
             })
-        }
+
+            function follow(u) {
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/php-twitter/api/follow.php",
+                    data: "u=" + u + ' ' + '<?php echo $_SESSION["username"] ?>',
+                    dataType: "text",
+                    success: function(msg) {
+                        console.info(msg);
+                        setTimeout(() => {
+
+                        }, 200);
+                        document.getElementById("f-num").innerText = "followers: " + msg.split('-')[1];
+                        let x = "unfollow" ? String(msg).includes("u") : "follow";
+                        if (x)
+                            document.getElementById('follow-btn').innerText = "Follow";
+                        else
+                            document.getElementById('follow-btn').innerText = "UnFollow";
+                    }
+                })
+            }
         <?php } ?>
         // ----------------------- likes
         setTimeout(() => {
             let buttons = document.querySelectorAll('i')
             console.log(buttons);
+
             for (let i = 0; i < buttons.length; i++) {
                 const element = buttons[i];
                 let id = parseInt(element.id.replace("like-", ""))
                 if (localStorage.getItem("liked-" + id) == 'true') {
                     document.querySelector("#like-" + id).classList.replace("fa-regular", "fa-solid")
                     document.querySelector("#like-" + id).style.color = 'red';
-                    console.log(id);
+
                 }
                 $.ajax({
                     type: "POST",
@@ -106,10 +107,10 @@
                     data: "id=" + id,
                     dataType: "text",
                     success: function(msg) {
-                        setTimeout(() => {
+                        if (id !== NaN && msg != "") {
                             document.getElementById("like-num-" + id).innerText = msg;
-                        }, 1000);
-                        
+                        }
+                        console.log(msg + " " + id)
                     }
                 })
             }
@@ -155,17 +156,36 @@
             })
         }
         let share = document.querySelectorAll(".share")
-  for (let o = 0; o < share.length; o++) {
-    const element = share[o];
-    let id = element.id.split("-")[1];
-    element.addEventListener("click", (e) => {
-      let alert = document.querySelector(".alert")
-      if(alert.style.display=="none"){
-        alert.style.display="block";
-      }
-      alert.innerHTML='<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/'+id;
-      
-    })}
+        for (let o = 0; o < share.length; o++) {
+            const element = share[o];
+            let id = element.id.split("-")[1];
+            element.addEventListener("click", (e) => {
+                let alert = document.querySelector(".alert")
+                if (alert.style.display == "none") {
+                    alert.style.display = "block";
+                }
+                alert.innerHTML = '<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/' + id;
+
+            })
+        }
+        setTimeout(() => {
+            let del = document.querySelectorAll(".delete")
+            for (let o = 0; o < del.length; o++) {
+                const element = del[o];
+                let id = element.id.split("-")[1]
+                element.addEventListener("click", (e) => {
+                    $.ajax({
+                        type: "POST",
+                        url: "//localhost/php-twitter/api/delete.php",
+                        data: "id=" + id,
+                        dataType: "text",
+                        success: function(msg) {
+                            location.reload()
+                        }
+                    })
+                })
+            }
+        }, 1000);
     </script>
 </body>
 
