@@ -138,23 +138,7 @@
                 }
             })
         }
-        let ret = document.querySelectorAll(".retweet")
-        for (let o = 0; o < ret.length; o++) {
-            const element = ret[o];
-            let id = element.id.split("-")[1]
-            element.addEventListener("click", (e) => {
-                $.ajax({
-                    type: "POST",
-                    url: "api/retweet.php",
-                    data: "id=" + id,
-                    dataType: "text",
-                    success: function(msg) {
-                        console.log(msg);
-                        location.reload();
-                    }
-                })
-            })
-        }
+
         let share = document.querySelectorAll(".share")
         for (let o = 0; o < share.length; o++) {
             const element = share[o];
@@ -181,6 +165,23 @@
                         dataType: "text",
                         success: function(msg) {
                             location.reload()
+                        }
+                    })
+                })
+            }
+            let ret = document.querySelectorAll(".retweet")
+            for (let o = 0; o < ret.length; o++) {
+                const element = ret[o];
+                let id = element.id.split("-")[1]
+                element.addEventListener("click", (e) => {
+                    $.ajax({
+                        type: "POST",
+                        url: "//localhost/php-twitter/api/retweet.php",
+                        data: "id=" + id,
+                        dataType: "text",
+                        success: function(msg) {
+                            console.log(msg);
+                            location.reload();
                         }
                     })
                 })
