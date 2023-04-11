@@ -115,7 +115,7 @@ ini_set('display_errors', 1);
         <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if ($retweet !== NULL) echo "retweeted from <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>";
         echo "
       </p>
-          <p>
+          <p id=\"text-c\">
             <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
               $text
             </a>
