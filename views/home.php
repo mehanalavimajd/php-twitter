@@ -113,37 +113,39 @@ ini_set('display_errors', 1);
         <img class=\"twit-avatar\" src=\"$profile\"></img>
         <p class=\"twit-author\">
         <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if ($retweet !== NULL) echo "retweeted from <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>";
-                                                                  echo "
+        echo "
       </p>
           <p>
             <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
               $text
             </a>
           </p>
+          <div class=\"btn-cont\">
+          <p id=\"like-num-$id\" class=\"like-num btn\"> </p>
+          <i class=\"fa-regular fa-heart like btn\" id=\"like-$id\" onclick=\"like($id)\"></i>
+          <i class=\"fa-solid fa-retweet retweet btn\" id=\"retweet-$id\"></i>
+          <i class=\"fa-solid fa-share-nodes share btn\" id=\"share-$id\"></i>
           
-          <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
-          <p id=\"like-num-$id\" class=\"like-num\"> </p>
-          <i class=\"fa-solid fa-retweet retweet\" id=\"retweet-$id\"></i>
-          <i class=\"fa-solid fa-share-nodes share\" id=\"share-$id\"></i>
           ";
-                                                                  if ($user === $_SESSION['username']) {
-                                                                    echo "
+        if ($user === $_SESSION['username']) {
+          echo "
           <p id=\"delete-$id\" class=\"delete\">Delete</p>";
-                                                                  }
-                                                                  echo " 
+        }
+        echo " 
+        </div>
           <p id=\"date\" class=\"date\"> $date </p>
         </div>
       </article>
       ";
-                                                                }
-                                                              } else {
-                                                                echo "0 results";
-                                                              }
-                                                            }
-                                                            tweets("SELECT * FROM tweet ORDER BY date DESC LIMIT 0,25");
-                                                            function clearTweets()
-                                                            {
-                                                                  ?>
+      }
+    } else {
+        echo "0 results";
+      }
+    }
+    tweets("SELECT * FROM tweet ORDER BY date DESC LIMIT 0,25");
+    function clearTweets()
+    {
+        ?>
       <script>
         let twits = document.querySelectorAll("article");
         for (let i = 0; i < twits.length; i++) {
@@ -152,7 +154,7 @@ ini_set('display_errors', 1);
         }
       </script>
     <?php
-                                                            }
+  }
     ?>
 
   </main>

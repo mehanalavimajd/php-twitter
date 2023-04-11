@@ -49,7 +49,7 @@
             </div><!-- FORM BODY-->
 
             <div class="form-footer">
-                <div>
+                <div class="sign">
                     <span>Already have an account?</span> <a href="/php-twitter/login">log in</a>
                 </div>
             </div><!-- FORM FOOTER -->

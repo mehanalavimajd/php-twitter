@@ -44,7 +44,7 @@
             </div><!-- FORM BODY-->
 
             <div class="form-footer">
-                <div>
+                <div class="sign">
                     <span>Don't have an account?</span> <a href="/php-twitter/signup">Sign Up</a>
                 </div>
             </div><!-- FORM FOOTER -->

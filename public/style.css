@@ -12,19 +12,10 @@ a {
    margin-right:30px;
 }
 .like{
-  width: 40px;
-  margin-left: 40px;
-  position: relative;
-  top:22px;
-  vertical-align: auto;
+  padding-left: 0.2rem !important;
 }
 .like-num {
-  position: relative;
-  left:-13px;
-  width:3px;
-  margin-left: 40px;
-  font-size: medium;
-  margin-top: 5px;
+  padding:0 !important;
 }
 .site-title {
   margin: 0;
@@ -331,8 +322,7 @@ a:focus {
 }
 .delete{
   color:red;
-  margin-top: -35px;
-  margin-left:80%;
+
 }
 html,body
 {
@@ -388,4 +378,13 @@ html,body
 /* When moving the mouse over the close button */
 .closebtn:hover {
   color: black;
+}
+.btn-cont{
+  display: table-row;
+  position: relative;
+  left:60px;
+}
+.btn{
+  display: table-cell;
+  padding:2rem;
 }

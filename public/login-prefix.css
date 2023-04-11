@@ -53,7 +53,7 @@ a:hover {
   overflow: hidden;
   padding: 50px;
   color: #ffffff;
-  border-radius: 3px;
+  border-radius: 30px;
   -webkit-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -297,4 +297,7 @@ li.fb a::before {
 
 .form-footer div a {
   color: #ffb37b;
+}
+.sign{
+  font-size: 20px !important;
 }
