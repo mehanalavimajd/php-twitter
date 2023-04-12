@@ -49,18 +49,20 @@ if ($result->num_rows == 1) {
               $text
             </a>
         </p>
-            <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
-            <p id=\"like-num-$id\" class=\"like-num\"> </p>
-            <i class=\"fa-solid fa-retweet retweet\" id=\"retweet-$id\"></i>
-            <i class=\"fa-solid fa-share-nodes share\" id=\"share-$id\"></i>
+        <div class=\"btn-cont\">
+        <p id=\"like-num-$id\" class=\"like-num btns\"> </p>
+        <i class=\"fa-regular fa-heart like btns\" id=\"like-$id\" onclick=\"like($id)\"></i>
+        <i class=\"fa-solid fa-retweet retweet btns\" id=\"retweet-$id\"></i>
+        <i class=\"fa-solid fa-share-nodes share btns\" id=\"share-$id\"></i>
         ";
         if (isset($_SESSION['username'])) {
           if ($user === $_SESSION['username']) {
             echo "
-        <p id=\"delete-$id\" class=\"delete\">Delete</p>";
+        <p id=\"delete-$id\" class=\"delete btns\">Delete</p>";
           }
         }
         echo " 
+        </div>
         <p id=\"date\" class=\"date\"> $date </p>
         </div>
       </article>";

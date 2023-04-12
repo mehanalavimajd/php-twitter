@@ -387,6 +387,10 @@ html,body
   display: table-cell;
   padding:2rem;
 }
+.btns{
+  display: table-cell;
+  padding:2rem;
+}
 #text-c{
   margin-left: 90px;
 }

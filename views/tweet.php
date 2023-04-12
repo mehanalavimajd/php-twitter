@@ -68,6 +68,7 @@ ini_set('display_errors', 1);
   <main class="twit-container">
 
     <?php
+    $Id=0;
     function tweets($sql)
     {
       $conn = new mysqli("localhost", "mehan", "mehan1388", "login");
@@ -81,6 +82,7 @@ ini_set('display_errors', 1);
           $text = $row['text'];
           $date = $row['date']; $retweet = $row['retweet'];
           $id = $row['id'];
+          $Id=$id;
           $profile = "";
           $result2 = $conn->query("SELECT profile FROM users WHERE username='$user'");
           while ($row2 = $result2->fetch_assoc()) {
@@ -91,25 +93,27 @@ ini_set('display_errors', 1);
           echo "
         <article class=\"twit\">
         <div class=\"twit-content\">
-        <img class=\"twit-avatar\" src=\"$profile\"></img>
+        <img class=\"twit-avatar\" src=\"//localhost/php-twitter/$profile\"></img>
         <p class=\"twit-author\">
         <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if($retweet!==NULL) echo "retweeted from <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>"; echo "
       </p>
-      <p>
+      <p id=\"text-c\">
           <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
             $text
           </a>
         </p>
-          <i class=\"fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
-          <p id=\"like-num-$id\" class=\"like-num\"> </p>
-          <i class=\"fa-solid fa-retweet retweet\" id=\"retweet-$id\"></i>
-          <i class=\"fa-solid fa-share-nodes share\" id=\"share-$id\"></i>
+        <div class=\"btn-cont\">
+          <p id=\"like-num-$id\" class=\"btn like-num\"> </p>
+          <i class=\"btn fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
+          <i class=\"btn fa-solid fa-retweet retweet\" id=\"retweet-$id\"></i>
+          <i class=\"btn fa-solid fa-share-nodes share\" id=\"share-$id\"></i>
           ";
           if ($user === $_SESSION['username']) {
             echo "
-          <p id=\"delete-$id\" class=\"delete\">Delete</p>";
+          <p id=\"delete-$id\" class=\"btn delete\">Delete</p>";
           }
           echo " 
+          </div>
           <p id=\"date\" class=\"date\"> $date </p>
         </div>
       </article>
@@ -134,7 +138,10 @@ ini_set('display_errors', 1);
     <?php
     }
     ?>
-
+    <?php if(isset($_SESSION['username'])){?>
+      <input class="comment" name="text">
+      <button type="submit" class="comment-btn">Submit</button>
+    <?php }?>
   </main>
 
   <button type="button" id="create-twit-button"><i class="fas fa-plus"></i></button>
@@ -169,7 +176,20 @@ ini_set('display_errors', 1);
 <script>
   // sending like request to api
   let buttons = document.querySelectorAll('.like')
-
+  let element = document.querySelector(".comment-btn")
+  console.log("k"+location.href.split("/")[5]);
+  element.addEventListener("click",(e)=>{
+    $.ajax({
+      type: "POST",
+      url: "http://localhost/php-twitter/api/comment.php",
+      data: "id=" + location.href.split("/")[5],
+      dataType: "text",
+      success: function(msg) {
+        console.log(msg);
+        location.reload()
+      }
+    })
+  })
   function ErrorNotification() {
     alert("Please login to like and tweet")
   }
