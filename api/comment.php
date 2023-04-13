@@ -19,10 +19,21 @@ if ($result->num_rows > 0) {
     $com = $row['comments'];
   }
 }
+$sql = "SELECT * FROM users where username='$user'";
+$profile;
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $profile = $row['profile'];
+  }
+}
 $com = json_decode($com,true);
 $newContent = [
   'user'=> $user,
-  'text'=> $text
+  'text'=> $text,
+  'profile'=>$profile
 ];
 $com['data'][] = $newContent;
 echo json_encode($com);

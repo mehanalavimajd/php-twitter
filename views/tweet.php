@@ -139,7 +139,7 @@ ini_set('display_errors', 1);
     }
     ?>
     <?php if(isset($_SESSION['username'])){?>
-      <input id="comment" name="text">
+      <input id="comment" name="text" placeholder="comment about the tweet...">
       <i class="fa-solid fa-paper-plane fa-xl comment-btn"></i>
     <?php }?>
     <div class="comment-cont"></div>
@@ -308,8 +308,10 @@ ini_set('display_errors', 1);
         obj.forEach(el=> {
           document.querySelector(".comment-cont").innerHTML+=`
           <div class="comment-box">
-          <a href="//localhost/php-twitter/${el.user}" class="author">${el.user}</a>
-          <p class="comment-text>">${el.text}</p>
+          <img class="profile" src="//localhost/php-twitter/${el.profile}"></img>
+          <a href="//localhost/php-twitter/${el.user}" class="author">${el.user} wrote:</a>
+          <p class="comment-text">${el.text}</p>
+          </div>
           `
         });
         }catch(e){
