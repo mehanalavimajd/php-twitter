@@ -139,9 +139,10 @@ ini_set('display_errors', 1);
     }
     ?>
     <?php if(isset($_SESSION['username'])){?>
-      <input class="comment" name="text">
-      <button type="submit" class="comment-btn">Submit</button>
+      <input id="comment" name="text">
+      <i class="fa-solid fa-paper-plane fa-xl comment-btn"></i>
     <?php }?>
+    <div class="comment-cont"></div>
   </main>
 
   <button type="button" id="create-twit-button"><i class="fas fa-plus"></i></button>
@@ -179,16 +180,17 @@ ini_set('display_errors', 1);
   let element = document.querySelector(".comment-btn")
   console.log("k"+location.href.split("/")[5]);
   element.addEventListener("click",(e)=>{
+    if(document.getElementById('comment').value!==''){
     $.ajax({
       type: "POST",
       url: "http://localhost/php-twitter/api/comment.php",
-      data: "id=" + location.href.split("/")[5],
+      data: {id : location.href.split("/")[5], text:document.getElementById('comment').value},
       dataType: "text",
       success: function(msg) {
         console.log(msg);
         location.reload()
       }
-    })
+    })}
   })
   function ErrorNotification() {
     alert("Please login to like and tweet")
@@ -293,6 +295,28 @@ ini_set('display_errors', 1);
       alert.innerHTML='<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/'+id;
       
     })}
+    $.ajax({
+      type: "POST",
+      url: "http://localhost/php-twitter/api/get-comment.php",
+      data: {id : location.href.split("/")[5]},
+      dataType: "text",
+      success: function(msg) {
+        try{
+        let x=JSON.parse(msg);
+        console.log(x);
+        let obj = x.data;
+        obj.forEach(el=> {
+          document.querySelector(".comment-cont").innerHTML+=`
+          <div class="comment-box">
+          <a href="//localhost/php-twitter/${el.user}" class="author">${el.user}</a>
+          <p class="comment-text>">${el.text}</p>
+          `
+        });
+        }catch(e){
+
+        }
+      }
+    })
 </script>
 
 <?php
