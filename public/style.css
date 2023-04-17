@@ -140,7 +140,7 @@ a:focus {
 .twit-text{
   word-wrap: break-word;
   display: block;
-  width: 700px;
+  width: 600px;
 }
 .twit-author{
   margin-left: 70px;
@@ -438,4 +438,7 @@ html,body
   height: 50px;
   margin-left: 40px;
   margin-top:20px;
+}
+.nop{
+  padding: 0.5rem !important;
 }
