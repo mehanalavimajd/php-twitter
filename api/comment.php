@@ -11,12 +11,14 @@ if ($conn->connect_error) {
 }
 $sql = "SELECT * FROM tweet where id=$id";
 $com;
+$c_num;
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
     $com = $row['comments'];
+    $c_num  = $row['c-num'];
   }
 }
 $sql = "SELECT * FROM users where username='$user'";
@@ -38,5 +40,9 @@ $newContent = [
 $com['data'][] = $newContent;
 echo json_encode($com);
 $com = json_encode($com);
+$c_num=$c_num+1;
 $sql = "UPDATE tweet SET comments='$com' WHERE id=$id";
+$conn->query($sql);
+
+$sql = "UPDATE tweet SET `c-num`='$c_num' WHERE id=$id";
 $conn->query($sql);

@@ -179,7 +179,7 @@ ini_set('display_errors', 1);
   let buttons = document.querySelectorAll('.like')
   let element = document.querySelector(".comment-btn")
   console.log("k"+location.href.split("/")[5]);
-  element.addEventListener("click",(e)=>{
+  function comment() {
     if(document.getElementById('comment').value!==''){
     $.ajax({
       type: "POST",
@@ -191,6 +191,13 @@ ini_set('display_errors', 1);
         location.reload()
       }
     })}
+  }
+  element.addEventListener("click",(e)=>{
+    comment();
+  })
+  document.getElementById("comment").addEventListener("keypress",(e)=>{
+    if(e.key==="Enter")
+      comment();
   })
   function ErrorNotification() {
     alert("Please login to like and tweet")
