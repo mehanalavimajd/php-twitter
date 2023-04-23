@@ -14,7 +14,7 @@ a {
 .like{
   padding-left: 0.2rem !important;
 }
-.like-num {
+.like-num, .com-num {
   padding:0 !important;
 }
 .site-title {
@@ -441,4 +441,7 @@ html,body
 }
 .nop{
   padding: 0.5rem !important;
+}
+.com-btn{
+  margin-right: 20px;
 }
