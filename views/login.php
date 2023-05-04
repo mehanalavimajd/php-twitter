@@ -19,10 +19,9 @@
     <div class="main-container">
         <div class="form-container">
 
-            <div class="srouce"><a>localhost/php-twitter</a></div>
 
             <div class="form-body">
-                <h2 class="title">Start Tweeting today</h2>
+                <h2 class="title">نظراتتان را به اشتراک بگذارید!</h2>
                 <div class="social-login">
                     <ul>
                         <li class="google"><a href="#"></a></li>
@@ -31,13 +30,13 @@
                 </div><!-- SOCIAL LOGIN -->
                 <form action="//localhost/php-twitter/login" method="POST" class="the-form">
 
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Enter your email">
+                    <label for="email">ایمیل</label>
+                    <input type="email" name="email" id="email" placeholder="">
 
-                    <label for="password">Password</label>
-                    <input type="password" name="pass" id="password" placeholder="Enter your password">
+                    <label for="password">رمز عبور</label>
+                    <input type="password" name="pass" id="password" placeholder="">
 
-                    <input type="submit" value="Log In">
+                    <input type="submit" value="ورود">
 
                 </form>
 
@@ -45,7 +44,7 @@
 
             <div class="form-footer">
                 <div class="sign">
-                    <span>Don't have an account?</span> <a href="/php-twitter/signup">Sign Up</a>
+                    <span>اکانت ندارید؟</span> <a href="/php-twitter/signup">ثبت‌نام کنید!</a>
                 </div>
             </div><!-- FORM FOOTER -->
 
@@ -77,7 +76,7 @@
           die();
         }
      }else {
-      echo "0 results";
+        echo "<script>alert('نام کاربری یا رمز اشتباه است.')</script>";
     }
     $conn->close();
     }

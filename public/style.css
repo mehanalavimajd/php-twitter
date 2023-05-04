@@ -3,7 +3,18 @@ body {
   margin: 0;
   background-color: #eee;
 }
-
+@font-face {
+  font-family: vazir;
+  src: url("./Vazirmatn-Medium.ttf");
+}
+@font-face {
+  font-family: vazirbold;
+  src: url("./Vazirmatn-Bold.ttf");
+}
+*{
+  font-family: vazir;
+  direction: rtl;
+}
 a {
   text-decoration: none;
 }
@@ -25,6 +36,7 @@ a {
   background-color: #319df6;
   color: #fff;
   font-family: Ubuntu;
+  height: 40px;
 }
 .mainlink{
   color:#fff;
@@ -64,7 +76,7 @@ a:focus {
 }
 
 .navlink a {
-  padding: 8px 10px;
+  padding: 8px 19px;
   display: inline-block;
 }
 
@@ -85,6 +97,7 @@ a:focus {
   background-color: #eee;
   border: 1px solid #dadada;
   border-radius: 2px;
+  margin-right: 35%;
 }
 
 #navbar-search-input:focus {
@@ -301,18 +314,16 @@ a:focus {
 .tri{
   width: 0.75em;
   height: auto;
-  transform: rotate(180deg);
-  margin-right:-20px;
+  transform: rotate(180deg) translateX(110px);
   margin-top:-5px;
-  margin-left: 40px;
+
 }
 .info-box{
-  background-color: white;
+  margin-right: 88%;
   width:100px;
   text-align: center;
-  margin-left:330px;
   margin-top:10px;
-  display: none;
+  background-color: white;
 }
 .date{
   text-align: right;

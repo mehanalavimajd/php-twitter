@@ -21,10 +21,9 @@
     <div class="main-container">
         <div class="form-container">
 
-            <div class="srouce"><a>localhost/php-twitter</a></div>
 
             <div class="form-body">
-                <h2 class="title">Start Tweeting today</h2>
+                <h2 class="title">نظراتتان را به اشتراک بگذارید!</h2>
                 <div class="social-login">
                     <ul>
                         <li class="google"><a href="#"></a></li>
@@ -33,16 +32,16 @@
                 </div><!-- SOCIAL LOGIN -->
                 <form action="//localhost/php-twitter/signup" method="POST" class="the-form">
 
-                    <label for="email">Username</label>
-                    <input type="text" name="username" id="email" placeholder="Enter your user">
+                    <label for="email">نام کاربری</label>
+                    <input type="text" name="username" id="email" placeholder="">
 
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Enter your email">
+                    <label for="email">ایمیل</label>
+                    <input type="email" name="email" id="email" placeholder="">
 
-                    <label for="password">Password</label>
-                    <input type="password" name="pass" id="password" placeholder="Enter your password">
+                    <label for="password">رمز عبور</label>
+                    <input type="password" name="pass" id="password" >
 
-                    <input type="submit" value="Sign up">
+                    <input type="submit" value="ثبت‌نام">
 
                 </form>
 
@@ -50,7 +49,7 @@
 
             <div class="form-footer">
                 <div class="sign">
-                    <span>Already have an account?</span> <a href="/php-twitter/login">log in</a>
+                    <span>قبل از این حساب ساخته‌اید؟</span> <a href="/php-twitter/login">ورود</a>
                 </div>
             </div><!-- FORM FOOTER -->
 

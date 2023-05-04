@@ -40,28 +40,27 @@ ini_set('display_errors', 1);
     </div>
     <nav class="navbar">
       <ul class="navlist">
-        <li class="navitem navlink active "><a href="/php-twitter">Home</a></li>
+        <li class="navitem navbar-search">
+        <li class="navitem navlink active "><a href="/php-twitter">صفحه اصلی</a></li>
         <?php
         session_start();
         if (isset($_SESSION['username'])) { ?>
 
-          <li class="navitem navlink"><a href="/php-twitter/followings">Following</a></li>
+          <li class="navitem navlink"><a href="/php-twitter/followings">دنبال‌شدگان</a></li>
         <?php } else { ?>
-          <li class="navitem navlink"><a href="/php-twitter/login">Following</a></li>
+          <li class="navitem navlink"><a href="/php-twitter/login">دنبال‌شدگان</a></li>
         <?php
         }
         ?>
         <?php
         if (isset($_SESSION['username'])) { ?>
-          <li class="navitem navlink"><a href="/php-twitter/trending">Trending</a></li>
+          <li class="navitem navlink"><a href="/php-twitter/trending">محبوب‌ترین ها</a></li>
         <?php } else { ?>
-          <li class="navitem navlink"><a href="/php-twitter/login">Trending</a></li>
+          <li class="navitem navlink"><a href="/php-twitter/login">محبوب‌ترین ها</a></li>
         <?php
         }
         ?>
-
-        <li class="navitem navbar-search">
-          <input type="text" id="navbar-search-input" class="search" placeholder="Search...">
+          <input type="text" id="navbar-search-input" class="search" placeholder="جستجو...">
           <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
           <img src="public/triangle.png" alt="" class="tri" onclick="infobox()">
           <?php
@@ -69,20 +68,23 @@ ini_set('display_errors', 1);
             $username = $_SESSION['username'];
             echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
           ?>
-            <div class="info-box">
-              <a href='/php-twitter/edit'>Edit profile</a>
-              <div style="width:100%; height:1px; background-color: black;"></div>
-              <a href='/php-twitter/logout'>Logout</a>
-            </div>
+          
           <?php
 
           } else {
             echo "<a id=\"username\" href=\"/php-twitter/login\">Login</a>";
           }
           ?>
+          
         </li>
       </ul>
+      
     </nav>
+    <div class="info-box">
+              <a href='/php-twitter/edit'>Edit profile</a>
+              <div style="width:100%; height:1px; background-color: black;"></div>
+              <a href='/php-twitter/logout'>Logout</a>
+            </div>
   </header>
 
   <main class="twit-container">
