@@ -97,9 +97,14 @@ a:focus {
   background-color: #eee;
   border: 1px solid #dadada;
   border-radius: 2px;
-  margin-right: 35%;
+  margin-right: 30%;
 }
-
+@media only screen and (max-width:768px) {
+  #navbar-search-input {
+    margin-right: 20%;
+  } 
+  
+}
 #navbar-search-input:focus {
   outline: none;
   background-color: #fff;
@@ -156,7 +161,7 @@ a:focus {
   width: 600px;
 }
 .twit-author{
-  margin-left: 70px;
+  margin-right: 7%;
 }
 .twit-content {
   flex: 1 1 80%;
@@ -165,7 +170,6 @@ a:focus {
 }
 .twit-content .twit-author {
   margin-top: 8px;
-  text-align: left;
 }
 
 #create-twit-button {
@@ -324,6 +328,7 @@ a:focus {
   text-align: center;
   margin-top:10px;
   background-color: white;
+  display: none;
 }
 .date{
   text-align: right;
@@ -393,7 +398,6 @@ html,body
 .btn-cont{
   display: table-row;
   position: relative;
-  left:65px;
 }
 .btn{
   display: table-cell;

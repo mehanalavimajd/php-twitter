@@ -57,7 +57,7 @@ ini_set('display_errors', 1);
           <?php
 
           } else {
-            echo "<a id=\"username\" href=\"/php-twitter/login\">Login</a>";
+            echo "<a id=\"username\" href=\"/php-twitter/login\">ورود</a>";
           }
           ?>
         </li>

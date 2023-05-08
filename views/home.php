@@ -21,7 +21,7 @@ ini_set('display_errors', 1);
   <link rel="stylesheet" href="/php-twitter/public/style.css" media="screen">
 
   <script src="/php-twitter/public/index.js" charset="utf-8" defer></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -72,7 +72,7 @@ ini_set('display_errors', 1);
           <?php
 
           } else {
-            echo "<a id=\"username\" href=\"/php-twitter/login\">Login</a>";
+            echo "<a id=\"username\" href=\"/php-twitter/login\">ورود</a>";
           }
           ?>
           
@@ -114,7 +114,7 @@ ini_set('display_errors', 1);
         <div class=\"twit-content\">
         <img class=\"twit-avatar\" src=\"$profile\"></img>
         <p class=\"twit-author\">
-        <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if ($retweet !== NULL) echo "retweeted from <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>";
+        <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if ($retweet !== NULL) echo "ری‌توییت شده از <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>";
         echo "
       </p>
           <p id=\"text-c\">
@@ -123,18 +123,18 @@ ini_set('display_errors', 1);
             </a>
           </p>
           <div class=\"btn-cont\">
-          <p id=\"like-num-$id\" class=\"like-num btn\"> </p>
           <i class=\"fa-regular fa-heart like btn\" id=\"like-$id\" onclick=\"like($id)\"></i>
+          <p id=\"like-num-$id\" class=\"like-num btn\"> </p>
           <i class=\"fa-solid fa-retweet retweet btn\" id=\"retweet-$id\"></i>
           <i class=\"fa-solid fa-share-nodes share btn\" id=\"share-$id\"></i>
           <a href=\"http://localhost/php-twitter/tweet/$id\">
-          <p id=\"com-num-$id\" class=\"com-num btn\"></p>
           <i class=\"fa-regular fa-comment com-btn\" id=\"com-$id\"></i></a>
+          <p id=\"com-num-$id\" class=\"com-num btn\"></p>
           
           ";
         if ($user === $_SESSION['username']) {
           echo "
-          <p id=\"delete-$id\" class=\"delete\">Delete</p>";
+          <p id=\"delete-$id\" class=\"delete btn\">Delete</p>";
         }
         echo " 
         </div>
