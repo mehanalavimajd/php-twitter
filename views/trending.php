@@ -105,37 +105,44 @@ ini_set('display_errors', 1);
         while ($row2 = $result2->fetch_assoc()) {
           $profile = $row2['profile'];
         }
+        
         echo "
         <article class=\"twit\">
         <div class=\"twit-content\">
         <img class=\"twit-avatar\" src=\"$profile\"></img>
         <p class=\"twit-author\">
-        <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if($retweet!==NULL) echo "retweeted from <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>"; echo "
+        <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if ($retweet !== NULL) echo "ری‌توییت شده از <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>";
+        echo "
       </p>
-      <p id=\"text-c\">
-          <a href=\"http://localhost/php-twitter/tweet/$id\"class=\"twit-text\">
-            $text
-          </a>
-      </p>
-      <div class=\"btn-cont\">
-          <p id=\"like-num-$id\" class=\"btn like-num\"> </p>
-          <i class=\"btn fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
-          <i class=\"btn fa-solid fa-retweet retweet\" id=\"retweet-$id\"></i>
-          <i class=\"btn fa-solid fa-share-nodes share\" id=\"share-$id\"></i>
-      ";
+          <p id=\"text-c\">
+            <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
+              $text
+            </a>
+          </p>
+          <div class=\"btn-cont\">
+          <i class=\"fa-regular fa-heart like btn\" id=\"like-$id\" onclick=\"like($id)\"></i>
+          <p id=\"like-num-$id\" class=\"like-num btn\"> </p>
+          <i class=\"fa-solid fa-retweet retweet btn\" id=\"retweet-$id\"></i>
+          <i class=\"fa-solid fa-share-nodes share btn\" id=\"share-$id\"></i>
+          <a href=\"http://localhost/php-twitter/tweet/$id\">
+          <i class=\"fa-regular fa-comment com-btn\" id=\"com-$id\"></i></a>
+          <p id=\"com-num-$id\" class=\"com-num btn\"></p>
+          
+          ";
         if ($user === $_SESSION['username']) {
           echo "
-      <p id=\"delete-$id\" class=\"btn delete\">Delete</p>";
+          <p id=\"delete-$id\" class=\"delete btn\">Delete</p>";
         }
         echo " 
         </div>
-      <p id=\"date\" class=\"date\"> $date </p>
-      </div>
-    </article>";
+          <p id=\"date\" class=\"date\"> $date </p>
+        </div>
+      </article>
+      ";
       }
     } else {
-      echo "0 results";
-    }
+        echo "0 results";
+      }
     ?>
 
   </main>
@@ -294,6 +301,20 @@ ini_set('display_errors', 1);
       alert.innerHTML='<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/'+id;
       
     })}
+    let cbtn = document.querySelectorAll(".com-btn")
+  cbtn.forEach((e)=>{
+    let id = e.id.split("com-")[1]
+    $.ajax({
+      type: "POST",
+      url: "api/comment-count.php",
+      data: "id=" + id,
+      dataType: "text",
+      success: function(msg) {
+        document.getElementById("com-num-" + id).innerText = msg;
+      }
+    })
+  })
+
 </script>
 <?php
 if (isset($_GET['q'])) {

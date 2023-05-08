@@ -21,7 +21,6 @@ ini_set('display_errors', 1);
   <link rel="stylesheet" href="/php-twitter/public/style.css" media="screen">
 
   <script src="/php-twitter/public/index.js" charset="utf-8" defer></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
