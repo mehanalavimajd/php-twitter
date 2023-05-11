@@ -103,10 +103,12 @@ ini_set('display_errors', 1);
           </a>
         </p>
         <div class=\"btn-cont\">
-          <p id=\"like-num-$id\" class=\"btn like-num\"> </p>
           <i class=\"btn fa-regular fa-heart like\" id=\"like-$id\" onclick=\"like($id)\"></i>
+          <p id=\"like-num-$id\" class=\"btn like-num\"> </p>
           <i class=\"btn fa-solid fa-retweet retweet\" id=\"retweet-$id\"></i>
           <i class=\"btn fa-solid fa-share-nodes share\" id=\"share-$id\"></i>
+          <i class=\"fa-regular fa-comment com-btn\" id=\"com-$id\"></i></a>
+          <p id=\"com-num-$id\" class=\"com-num btn\"></p>
           ";
           if ($user === $_SESSION['username']) {
             echo "
@@ -326,6 +328,20 @@ ini_set('display_errors', 1);
         }
       }
     })
+  let cbtn = document.querySelectorAll(".com-btn")
+  cbtn.forEach((e)=>{
+    let id = e.id.split("com-")[1]
+    $.ajax({
+      type: "POST",
+      url: "//localhost/php-twitter/api/comment-count.php",
+      data: "id=" + id,
+      dataType: "text",
+      success: function(msg) {
+        document.getElementById("com-num-" + id).innerText = msg;
+        console.log("hello");
+      }
+    })
+  })
 </script>
 
 <?php

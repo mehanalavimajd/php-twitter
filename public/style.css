@@ -161,7 +161,7 @@ a:focus {
   width: 600px;
 }
 .twit-author{
-  margin-right: 7%;
+  margin-right: 10%;
 }
 .twit-content {
   flex: 1 1 80%;
@@ -359,7 +359,8 @@ html,body
 }
 .usertwit{
   width:55%;
-  margin-left: 40%;
+  margin: auto;
+  margin-right: 5%;
 }
 .retweet{
   margin-top: -35px;

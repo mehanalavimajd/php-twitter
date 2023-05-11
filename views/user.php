@@ -42,7 +42,7 @@ if ($result->num_rows == 1) {
           <div class=\"twit-content\">
           <img class=\"twit-avatar\" src=\"http://localhost/php-twitter/$profile\"></img>
           <p class=\"twit-author\">
-          <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if($retweet!==NULL) echo "retweeted from <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>"; echo "
+          <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if($retweet!==NULL) echo "ری‌توییت شده از <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>"; echo "
         </p>
         <p>
             <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
@@ -50,10 +50,12 @@ if ($result->num_rows == 1) {
             </a>
         </p>
         <div class=\"btn-cont\">
-        <p id=\"like-num-$id\" class=\"like-num btns\"> </p>
         <i class=\"fa-regular fa-heart like btns\" id=\"like-$id\" onclick=\"like($id)\"></i>
+        <p id=\"like-num-$id\" class=\"like-num btns\"> </p>
         <i class=\"fa-solid fa-retweet retweet btns\" id=\"retweet-$id\"></i>
         <i class=\"fa-solid fa-share-nodes share btns\" id=\"share-$id\"></i>
+        <i class=\"fa-regular fa-comment com-btn\" id=\"com-$id\"></i></a>
+        <p id=\"com-num-$id\" class=\"com-num btn\"></p>
         ";
         if (isset($_SESSION['username'])) {
           if ($user === $_SESSION['username']) {
@@ -76,3 +78,19 @@ if ($result->num_rows == 1) {
   echo "user $user not found :(";
 }
 ?>
+<script>
+  let cbtn = document.querySelectorAll(".com-btn")
+  cbtn.forEach((e)=>{
+    let id = e.id.split("com-")[1]
+    $.ajax({
+      type: "POST",
+      url: "//localhost/php-twitter/api/comment-count.php",
+      data: "id=" + id,
+      dataType: "text",
+      success: function(msg) {
+        document.getElementById("com-num-" + id).innerText = msg;
+        console.log('hekk');
+      }
+    })
+  })
+</script>
