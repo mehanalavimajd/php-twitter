@@ -38,8 +38,7 @@ $newContent = [
   'profile'=>$profile
 ];
 $com['data'][] = $newContent;
-echo json_encode($com);
-$com = json_encode($com);
+$com = json_encode($com,JSON_UNESCAPED_UNICODE);
 $c_num=$c_num+1;
 $sql = "UPDATE tweet SET comments='$com' WHERE id=$id";
 $conn->query($sql);

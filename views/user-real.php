@@ -36,7 +36,7 @@
                                     <?php if ($_SESSION['username'] != $user) { ?>
                                         <div class="d-flex justify-content-center mb-2">
                                             <button type="button" id="follow-btn" class="btn btn-primary nop" onclick="follow('<?php echo $user; ?>')">Follow</button>
-                                            <button type="button" class="btn btn-outline-primary ms-1 nop">Message</button>
+                                            <button type="button" class="btn btn-outline-primary ms-1 nop siuuu">Message</button>
                                         </div>
                                     <?php } ?>
                             </div>

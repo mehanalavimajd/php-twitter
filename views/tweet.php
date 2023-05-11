@@ -141,8 +141,8 @@ ini_set('display_errors', 1);
     }
     ?>
     <?php if(isset($_SESSION['username'])){?>
-      <input id="comment" name="text" placeholder="comment about the tweet...">
-      <i class="fa-solid fa-paper-plane fa-xl comment-btn"></i>
+      <input id="comment" name="text" placeholder="نظر شما چیست؟">
+      <i class="fa-solid fa-paper-plane fa-xl plane comment-btn"></i>
     <?php }?>
     <div class="comment-cont"></div>
   </main>
