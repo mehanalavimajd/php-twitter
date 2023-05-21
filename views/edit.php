@@ -27,7 +27,11 @@ if ($result->num_rows > 0) {
 
 <head>
     <meta charset="utf-8">
-
+    <style>
+        *{
+            direction:rtl;
+        }
+    </style>
 
 
     <title>account setting or edit profile - Bootdey.com</title>
@@ -62,11 +66,11 @@ if ($result->num_rows > 0) {
                         <div class="card-body">
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h6 class="mb-2 text-primary">Personal Details</h6>
+                                    <h6 class="mb-2 text-primary">اطلاعات شخصی</h6>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="bio">Bio:</label>
+                                        <label for="bio">توضیحی کوتاه درباره خودتان</label>
                                         <input type="text" value="<?php echo $bio; ?>" name="bio" class="form-control" id="bio" placeholder="Enter bio">
                                     </div>
                                 </div>

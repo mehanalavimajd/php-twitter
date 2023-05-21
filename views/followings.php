@@ -80,9 +80,9 @@ ini_set('display_errors', 1);
       
     </nav>
     <div class="info-box">
-              <a href='/php-twitter/edit'>Edit profile</a>
+              <a href='/php-twitter/edit'>ویرایش حساب</a>
               <div style="width:100%; height:1px; background-color: black;"></div>
-              <a href='/php-twitter/logout'>Logout</a>
+              <a href='/php-twitter/logout'>خروج</a>
             </div>
   </header>
 
@@ -145,7 +145,7 @@ ini_set('display_errors', 1);
           ";
         if ($user === $_SESSION['username']) {
           echo "
-          <p id=\"delete-$id\" class=\"delete btn\">Delete</p>";
+          <p id=\"delete-$id\" class=\"delete btn\">حذف</p>";
         }
         echo " 
         </div>

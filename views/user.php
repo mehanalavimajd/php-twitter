@@ -60,7 +60,7 @@ if ($result->num_rows == 1) {
         if (isset($_SESSION['username'])) {
           if ($user === $_SESSION['username']) {
             echo "
-        <p id=\"delete-$id\" class=\"delete btns\">Delete</p>";
+        <p id=\"delete-$id\" class=\"delete btns\">حذف</p>";
           }
         }
         echo " 
