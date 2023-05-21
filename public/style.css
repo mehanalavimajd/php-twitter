@@ -227,6 +227,7 @@ a:focus {
 }
 
 .modal-dialog {
+  direction: rtl;
   width: auto;
   max-width: 600px;
   min-width: 350px;
@@ -470,4 +471,16 @@ html,body
 }
 .plane{
   margin-right: 5%;
+}
+.modal-h3{
+  margin-top: 20px !important;
+  margin-right: 20px !important;
+}
+.modal-label{
+  margin-right: 20px !important;
+  opacity: 0.6;
+}
+.modal-button{
+  margin-left: 10px !important;
+  padding: 2px 15px !important
 }

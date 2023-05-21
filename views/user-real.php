@@ -181,7 +181,7 @@
                         if (alert.style.display == "none") {
                             alert.style.display = "block";
                         }
-                        alert.innerHTML = '<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/' + id;
+                        alert.innerHTML = '<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> لینک اشتراک‌گذاری: localhost/php-twitter/tweet/' + id;
 
                     })
                 }

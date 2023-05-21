@@ -20,7 +20,7 @@ ini_set('display_errors', 1);
 
   <link rel="stylesheet" href="/php-twitter/public/style.css" media="screen">
 
-  <script src="/php-twitter/public/index.js" charset="utf-8" defer></script>
+  <script src="//localhost/php-twitter/public/index.js" charset="utf-8" defer></script>
 
 </head>
 
@@ -41,10 +41,7 @@ ini_set('display_errors', 1);
       <ul class="navlist">
 
 
-        <li class="navitem navbar-search">
-          <input type="text" id="navbar-search-input" class="search" placeholder="Search...">
-          <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
-          <img src="public/triangle.png" alt="" class="tri" onclick="infobox()">
+
           <?php
           session_start();
           if (isset($_SESSION['username'])) {
@@ -301,7 +298,7 @@ ini_set('display_errors', 1);
       if(alert.style.display=="none"){
         alert.style.display="block";
       }
-      alert.innerHTML='<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> Link to share: localhost/php-twitter/tweet/'+id;
+      alert.innerHTML='<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span> لینک اشتراک‌گذاری: localhost/php-twitter/tweet/'+id;
       
     })}
     $.ajax({
