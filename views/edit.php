@@ -28,8 +28,16 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="utf-8">
     <style>
+        @font-face {
+            font-family: vazir;
+            src: url("public/Vazirmatn-Medium.ttf");
+        }
         *{
             direction:rtl;
+            font-family: vazir;
+        }
+        label{
+            margin-left: 52%;
         }
     </style>
 
@@ -76,19 +84,19 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="email">Email</label>
+                                        <label for="email" style="margin-left: 87%;">ایمیل</label>
                                         <input type="email" value="<?php echo $email; ?>" name="email" class="form-control" id="email" placeholder="Enter email ">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="city">City/Location</label>
+                                        <label for="city" style="margin-left: 75%;">موقعیت مکانی</label>
                                         <input type="text" value="<?php echo $city; ?>" name="city" class="form-control" id="city" placeholder="Enter city">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                        <label for="city">profile</label>
+                                        <label for="city" style="margin-left: 75%;">عکس پروفایل</label>
                                         <input type="file"  name="uploadedFile" class="form-control" id="city" placeholder="Enter phone number">
                                     </div>
                                 </div>
@@ -126,8 +134,8 @@ if ($result->num_rows > 0) {
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="text-right">
-                                        <button type="button" id="submit" onclick="location.reload()" name="submit" class="btn btn-secondary">Cancel</button>
-                                        <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+                                        <button type="button" id="submit" onclick="location.reload()" name="submit" class="btn btn-secondary">لغو‌ کردن</button>
+                                        <button type="submit" id="submit" name="submit" class="btn btn-primary">به‌روزرسانی</button>
                                     </div>
                                 </div>
                             </div>

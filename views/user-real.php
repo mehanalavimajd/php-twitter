@@ -35,8 +35,8 @@
                                     <p class="mb-4" id="f-num"></p>
                                     <?php if ($_SESSION['username'] != $user) { ?>
                                         <div class="d-flex justify-content-center mb-2">
-                                            <button type="button" id="follow-btn" class="btn btn-primary nop" onclick="follow('<?php echo $user; ?>')">Follow</button>
-                                            <button type="button" class="btn btn-outline-primary ms-1 nop siuuu">Message</button>
+                                            <button type="button" id="follow-btn" class="btn btn-primary nop" onclick="follow('<?php echo $user; ?>')">دنبال‌کردن</button>
+                                            <button type="button" class="btn btn-outline-primary ms-1 nop siuuu">ارسال پیام</button>
                                         </div>
                                     <?php } ?>
                             </div>
@@ -60,9 +60,9 @@
                         document.getElementById("f-num").innerText = "followers: " + msg.split("-")[1];
                         let x = "unfollow" ? String(msg).includes("u") : "follow";
                         if (x)
-                            document.getElementById('follow-btn').innerText = "Unfollow";
+                            document.getElementById('follow-btn').innerText = "توقف دنبال";
                         else
-                            document.getElementById('follow-btn').innerText = "Follow";
+                            document.getElementById('follow-btn').innerText = "دنبال‌کردن";
                     })
                 }
             })
@@ -81,9 +81,9 @@
                         document.getElementById("f-num").innerText = "followers: " + msg.split('-')[1];
                         let x = "unfollow" ? String(msg).includes("u") : "follow";
                         if (x)
-                            document.getElementById('follow-btn').innerText = "Follow";
+                            document.getElementById('follow-btn').innerText = "دنبال‌ کردن";
                         else
-                            document.getElementById('follow-btn').innerText = "UnFollow";
+                            document.getElementById('follow-btn').innerText = "توقف‌دنبال";
                     }
                 })
             }

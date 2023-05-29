@@ -315,7 +315,7 @@ ini_set('display_errors', 1);
           document.querySelector(".comment-cont").innerHTML+=`
           <div class="comment-box">
           <img class="profile" src="//localhost/php-twitter/${el.profile}"></img>
-          <a href="//localhost/php-twitter/${el.user}" class="author">${el.user} نوشت:</a>
+          <a href="//localhost/php-twitter/user/${el.user}" class="author">${el.user} نوشت:</a>
           <p class="comment-text">${el.text}</p>
           </div>
           `
