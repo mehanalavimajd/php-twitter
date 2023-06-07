@@ -299,7 +299,6 @@ a:focus {
   color: #333;
   border: 1px solid #333;
   border-radius: 5px;
-  padding: 10px;
   margin-right: 20px;
   cursor: pointer;
 }
@@ -482,5 +481,5 @@ html,body
 }
 .modal-button{
   margin-left: 10px !important;
-  padding: 2px 15px !important
+  width: 75px;
 }
