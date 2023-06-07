@@ -168,20 +168,20 @@ ini_set('display_errors', 1);
     <div class="modal-dialog">
 
       <div class="modal-header">
-        <h3>Create a Tweet</h3>
+        <h3 class="modal-h3">یک توییت بنویسید</h3>
         <button type="button" class="modal-close-button">&times;</button>
       </div>
       <form action="/php-twitter/api/tweet" method="post">
         <div class="modal-body">
           <div class="twit-input-element">
-            <label for="twit-text-input">Tweet text</label>
+            <label class="modal-label" for="twit-text-input">متن توییت</label>
             <input maxlength="255" type="text" name="text">
           </div>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="modal-cancel-button">Cancel</button>
-          <button type="submit" class="modal-accept-button">Tweet!</button>
+          <button type="button" class="modal-button modal-cancel-button">لغو</button>
+          <button type="submit" class="modal-button modal-accept-button">ارسال!</button>
         </div>
       </form>
     </div>

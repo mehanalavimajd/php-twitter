@@ -183,7 +183,7 @@ ini_set('display_errors', 1);
 
         <div class="modal-footer">
           <button type="button" class="modal-button modal-cancel-button">لغو</button>
-          <button type="submit" class="modal-button modal-accept-button">!ارسال</button>
+          <button type="submit" class="modal-button modal-accept-button">ارسال!</button>
         </div>
       </form>
     </div>
