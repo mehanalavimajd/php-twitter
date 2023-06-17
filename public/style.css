@@ -454,6 +454,7 @@ html,body
   height: 50px;
   margin-left: 30px;
   margin-top:20px;
+  border-radius: 50px;
 }
 .nop{
   padding: 0.5rem !important;

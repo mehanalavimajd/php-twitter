@@ -28,7 +28,7 @@
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img style="width:100px; height:100px;" src="http://localhost/php-twitter/<?php echo $profile ?>">
+                                <img style="width:100px; height:100px; border-radius: 50px;" src="http://localhost/php-twitter/<?php echo $profile ?>">
                                 <h3 class="my-3"><?php echo $user; ?></h5>
                                     <p id="followyou"></p>
                                     <p class="text-muted mb-1"><?php echo $bio; ?></p>
