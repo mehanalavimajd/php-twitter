@@ -30,6 +30,7 @@
                             <div class="card-body text-center">
                                 <img style="width:100px; height:100px;" src="http://localhost/php-twitter/<?php echo $profile ?>">
                                 <h3 class="my-3"><?php echo $user; ?></h5>
+                                    <p id="followyou"></p>
                                     <p class="text-muted mb-1"><?php echo $bio; ?></p>
                                     <p class="text-muted mb-4"><?php echo $city; ?></p>
                                     <p class="mb-4" id="f-num"></p>
@@ -57,7 +58,7 @@
                 success: function(msg) {
                     console.log(msg);
                     $(document).ready(() => {
-                        document.getElementById("f-num").innerText = "followers: " + msg.split("-")[1];
+                        document.getElementById("f-num").innerText = "تعداد دنبال‌کننده‌ها: " + msg.split("-")[1];
                         let x = "unfollow" ? String(msg).includes("u") : "follow";
                         if (x)
                             document.getElementById('follow-btn').innerText = "توقف دنبال";
@@ -187,6 +188,27 @@
                 }
             }
         }, 1000);
+        // follows you
+        let json;
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/php-twitter/api/followsyou.php",
+            data: "u1=" + "<?php echo $user ?>",
+            dataType: "json",
+            success: function(msg) {
+                json = msg;
+                var user = "<?php echo $_SESSION['username'] ?>";
+                var f=0;
+                json.data.forEach(element => {
+                    if(element===user)
+                        f=1;
+                });
+                if(f==1)
+                    document.getElementById("followyou").innerHTML="شما را دنبال می کند"
+            }
+
+        })
     </script>
 </body>
 

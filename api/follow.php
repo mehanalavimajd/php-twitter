@@ -1,7 +1,7 @@
 <?php
 session_start();
-    ini_set('error_reporting',E_ALL);
-    ini_set('display_errors',1);
+ini_set('error_reporting',E_ALL);
+ini_set('display_errors',1);
 $conn = new mysqli("localhost", "mehan", "mehan1388","login");
 $u1 = "";
 $u2 = $_POST['u']; // * u1 wants to follow u2
