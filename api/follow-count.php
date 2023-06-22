@@ -22,10 +22,12 @@ if ($result->num_rows > 0) {
     }
         if(strpos($row['follower'],$user2)===false){
             $s = $row['f-num'];
-            echo "f-$s";
+            $s2=$row['f2-num'];
+            echo "f-$s-$s2";
         }else{
             $s = $row['f-num'];
-            echo "u-$s";
+            $s2=$row['f2-num'];
+            echo "u-$s-$s2";
         }
     }
 } 

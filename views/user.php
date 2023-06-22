@@ -59,6 +59,7 @@ if ($result->num_rows == 1) {
         <p id=\"like-num-$id\" class=\"like-num btns\"> </p>
         <i class=\"fa-solid fa-retweet retweet btns\" id=\"retweet-$id\"></i>
         <i class=\"fa-solid fa-share-nodes share btns\" id=\"share-$id\"></i>
+        <a href=\"http://localhost/php-twitter/tweet/$id\">
         <i class=\"fa-regular fa-comment com-btn\" id=\"com-$id\"></i></a>
         <p id=\"com-num-$id\" class=\"com-num btn\"></p>
         ";

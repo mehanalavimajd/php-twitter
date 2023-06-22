@@ -28,14 +28,21 @@
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img style="width:100px; height:100px; border-radius: 50px;" src="http://localhost/php-twitter/<?php echo $profile ?>">
+                                <img style="width:100px; height:100px; border-radius: 50px; margin-top:-50px;" src="http://localhost/php-twitter/<?php echo $profile ?>">
                                 <h3 class="my-3"><?php echo $user; ?></h5>
                                     <p id="followyou"></p>
                                     <p class="text-muted mb-1"><?php echo $bio; ?></p>
                                     <p class="text-muted mb-4"><?php echo $city; ?></p>
-                                    <p class="mb-4" id="f-num"></p>
+                                    <div class="table ta">
+                                        <p class="mb-4 cell ta" id="f-dis">تعداد دنبال‌کننده‌ها </p>
+                                        <p class="mb-4 cell ta" id="f2-dis">تعداد دنبال‌شونده‌‌‌ها </p>
+                                    </div>
+                                    <div class="table ta">
+                                        <p class="mb-4 cell ta fw-bold fs-4" id="f-num"></p>
+                                        <p class="mb-4 cell ta fw-bold fs-4" id="f2-num"></p>
+                                    </div>
                                     <?php if ($_SESSION['username'] != $user) { ?>
-                                        <div class="d-flex justify-content-center mb-2">
+                                        <div class="d-flex justify-content-center mb-2" style="margin-top: 30px;">
                                             <button type="button" id="follow-btn" class="btn btn-primary nop" onclick="follow('<?php echo $user; ?>')">دنبال‌کردن</button>
                                             <button type="button" class="btn btn-outline-primary ms-1 nop siuuu">ارسال پیام</button>
                                         </div>
@@ -48,25 +55,26 @@
     } ?>
     <script src="/php-twitter/public/jquery.js"></script>
     <script>
-        <?php if ($_SESSION['username'] !== $_GET['user']) { ?>
-            $.ajax({
+        $.ajax({
 
-                type: "POST",
-                url: "http://localhost/php-twitter/api/follow-count.php",
-                data: "user=" + '<?php echo $user ?>' + ' ' + '<?php echo $_SESSION["username"] ?>',
-                dataType: "text",
-                success: function(msg) {
-                    console.log(msg);
-                    $(document).ready(() => {
-                        document.getElementById("f-num").innerText = "تعداد دنبال‌کننده‌ها: " + msg.split("-")[1];
-                        let x = "unfollow" ? String(msg).includes("u") : "follow";
-                        if (x)
-                            document.getElementById('follow-btn').innerText = "توقف دنبال";
-                        else
-                            document.getElementById('follow-btn').innerText = "دنبال‌کردن";
-                    })
-                }
-            })
+type: "POST",
+url: "http://localhost/php-twitter/api/follow-count.php",
+data: "user=" + '<?php echo $user ?>' + ' ' + '<?php echo $_SESSION["username"] ?>',
+dataType: "text",
+success: function(msg) {
+    console.log(msg);
+    $(document).ready(() => {
+        document.getElementById("f-num").innerText =  msg.split("-")[1];
+        document.getElementById("f2-num").innerText =  msg.split("-")[2];
+        let x = "unfollow" ? String(msg).includes("u") : "follow";
+        if (x)
+            document.getElementById('follow-btn').innerText = "توقف دنبال";
+        else
+            document.getElementById('follow-btn').innerText = "دنبال‌کردن";
+    })
+}
+})
+        <?php if ($_SESSION['username'] !== $_GET['user']) { ?>
 
             function follow(u) {
                 $.ajax({
@@ -79,7 +87,7 @@
                         setTimeout(() => {
 
                         }, 200);
-                        document.getElementById("f-num").innerText = "followers: " + msg.split('-')[1];
+                        document.getElementById("f-num").innerText = msg.split('-')[1];
                         let x = "unfollow" ? String(msg).includes("u") : "follow";
                         if (x)
                             document.getElementById('follow-btn').innerText = "دنبال‌ کردن";

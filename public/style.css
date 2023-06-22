@@ -389,7 +389,8 @@ html,body
   font-size: 22px;
   line-height: 20px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s
+;
 }
 
 /* When moving the mouse over the close button */
@@ -484,4 +485,18 @@ html,body
 .modal-button{
   margin-left: 10px !important;
   width: 75px;
+}
+
+
+.ta{
+  text-align: center;
+  padding: 0.5em 2em;
+}
+
+.table{
+  display: table-row;
+}
+
+.cell {
+  display: table-cell;
 }

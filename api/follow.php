@@ -15,12 +15,16 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $followings = $row['following'];
+        $f2=$row['f2-num'];
         if (!(in_array($u2,json_decode($followings,true)['data']))) {
             $f = json_decode($followings, true);
             echo in_array($u2, json_decode($followings, true));
             $f['data'][] = $u2;
             $f = json_encode($f);
             $sql = "UPDATE users SET following='$f' WHERE username='$u1'";
+            $conn->query($sql);
+            $f2+=1;
+            $sql = "UPDATE users SET `f2-num`='$f2' WHERE username='$u1'";
             $conn->query($sql);
             $sql = "SELECT * FROM users where username='$u2'";
             $result2 = $conn->query($sql);
