@@ -8,7 +8,7 @@ $conn = new mysqli("localhost", "mehan", "mehan1388","login");
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT * FROM users where username=$user";
+$sql = "SELECT * FROM users where username='$user'";
 $com;
 $c_num;
 $result = $conn->query($sql);

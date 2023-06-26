@@ -95,7 +95,6 @@ if ($result->num_rows == 1) {
       dataType: "text",
       success: function(msg) {
         document.getElementById("com-num-" + id).innerText = msg;
-        console.log('hekk');
       }
     })
   })

@@ -11,22 +11,23 @@ body {
   font-family: vazirbold;
   src: url("./Vazirmatn-Bold.ttf");
 }
-*{
+* {
   font-family: vazir;
   direction: rtl;
 }
 a {
   text-decoration: none;
 }
-#username{
-   margin-left: 30px;
-   margin-right:30px;
+#username {
+  margin-left: 30px;
+  margin-right: 30px;
 }
-.like{
+.like {
   padding-left: 0.2rem !important;
 }
-.like-num, .com-num {
-  padding:0 !important;
+.like-num,
+.com-num {
+  padding: 0 !important;
 }
 .site-title {
   margin: 0;
@@ -38,13 +39,13 @@ a {
   font-family: Ubuntu;
   height: 40px;
 }
-.mainlink{
-  color:#fff;
-}
-.mainlink:hover{
+.mainlink {
   color: #fff;
 }
-.mainlink:active{
+.mainlink:hover {
+  color: #fff;
+}
+.mainlink:active {
   color: #fff;
 }
 .navbar {
@@ -99,11 +100,10 @@ a:focus {
   border-radius: 2px;
   margin-right: 30%;
 }
-@media only screen and (max-width:768px) {
+@media only screen and (max-width: 768px) {
   #navbar-search-input {
     margin-right: 20%;
-  } 
-  
+  }
 }
 #navbar-search-input:focus {
   outline: none;
@@ -148,24 +148,24 @@ a:focus {
 .twit-icon {
   font-size: 24px;
 }
-.twit-avatar{
+.twit-avatar {
   width: 50px;
   height: 50px;
-  margin-bottom:-40px;
+  margin-bottom: -40px;
   margin-top: 10px;
   border-radius: 50px;
 }
-.twit-text{
+.twit-text {
   word-wrap: break-word;
   display: block;
   width: 600px;
 }
-.twit-author{
+.twit-author {
   margin-right: 10%;
 }
 .twit-content {
   flex: 1 1 80%;
-  margin-left: 10px; 
+  margin-left: 10px;
   max-width: 800px;
 }
 .twit-content .twit-author {
@@ -315,67 +315,65 @@ a:focus {
 .modal-footer .modal-accept-button:hover {
   background-color: #087dde;
 }
-.tri{
+.tri {
   width: 0.75em;
   height: auto;
   transform: rotate(180deg) translateX(110px);
-  margin-top:-5px;
-
+  margin-top: -5px;
 }
-.info-box{
+.info-box {
   margin-right: 88%;
-  width:100px;
+  width: 100px;
   text-align: center;
-  margin-top:10px;
+  margin-top: 10px;
   background-color: white;
   display: none;
 }
-.date{
+.date {
   text-align: right;
   font-family: Ubuntu;
   color: grey;
   opacity: 40%;
 }
-.delete{
-  color:red;
-
+.delete {
+  color: red;
 }
-html,body
-{
-    height: 100%;
-    overflow-x: hidden;
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
 }
-.card ,.row
-{
-    position: fixed;
-    top:0;
-    left:0;
-    width: 33%;
-    height: 100%;
-    margin-top: auto;
+.card,
+.row {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 33%;
+  height: 100%;
+  margin-top: auto;
 }
-.card-body{
-    margin-top: 33%;
+.card-body {
+  margin-top: 33%;
 }
-.usertwit{
-  width:55%;
+.usertwit {
+  width: 55%;
   margin: auto;
   margin-right: 5%;
 }
-.retweet{
+.retweet {
   margin-top: -35px;
   margin-left: 40%;
 }
-.retweet-link{
+.retweet-link {
   text-decoration: underline;
 }
-.share{
+.share {
   margin-left: 20%;
   margin-top: -33px;
 }
 .alert {
   padding: 20px;
-  background-color: #2196F3; /* Red */
+  background-color: #2196f3; /* Red */
   color: white;
   margin-bottom: 15px;
 }
@@ -389,30 +387,29 @@ html,body
   font-size: 22px;
   line-height: 20px;
   cursor: pointer;
-  transition: 0.3s
-;
+  transition: 0.3s;
 }
 
 /* When moving the mouse over the close button */
 .closebtn:hover {
   color: black;
 }
-.btn-cont{
+.btn-cont {
   display: table-row;
   position: relative;
 }
-.btn{
+.btn {
   display: table-cell;
-  padding:2rem;
+  padding: 2rem;
 }
-.btns{
+.btns {
   display: table-cell;
-  padding:2rem;
+  padding: 2rem;
 }
-#text-c{
+#text-c {
   margin-left: 90px;
 }
-#comment{
+#comment {
   width: 100%;
   height: 100px;
   margin-right: 10px;
@@ -422,19 +419,19 @@ html,body
   padding: 10px;
   word-break: break-all;
 }
-.comment-btn{
+.comment-btn {
   height: 40px;
   margin-top: -100px;
   border: none;
   margin-left: 93%;
   border-radius: 10px;
-  color:#087dde;
+  color: #087dde;
 }
-.comment-cont{
-  width: 100%;    
+.comment-cont {
+  width: 100%;
 }
 
-.comment-box{
+.comment-box {
   margin-top: 30px;
   background: white;
   border: 1px solid #dadada;
@@ -442,61 +439,91 @@ html,body
   word-break: break-all;
   padding-right: 20px;
 }
-.comment-text{
+.comment-text {
   margin-left: 110px;
 }
-.author{
+.author {
   margin-left: 20px;
   position: relative;
-  top:-20px;
+  top: -20px;
 }
-.profile{
+.profile {
   width: 50px;
   height: 50px;
   margin-left: 30px;
-  margin-top:20px;
+  margin-top: 20px;
   border-radius: 50px;
 }
-.nop{
+.nop {
   padding: 0.5rem !important;
 }
-.com-btn{
+.com-btn {
   margin-right: 20px;
 }
-.siuuu{
+.siuuu {
   position: relative;
   right: 20px;
 }
-#comment{
+#comment {
   padding-right: 10%;
   font-size: large;
 }
-.plane{
+.plane {
   margin-right: 5%;
 }
-.modal-h3{
+.modal-h3 {
   margin-top: 20px !important;
   margin-right: 20px !important;
 }
-.modal-label{
+.modal-label {
   margin-right: 20px !important;
   opacity: 0.6;
 }
-.modal-button{
+.modal-button {
   margin-left: 10px !important;
   width: 75px;
 }
 
-
-.ta{
+.ta {
   text-align: center;
   padding: 0.5em 2em;
 }
 
-.table{
+.table {
   display: table-row;
 }
 
 .cell {
   display: table-cell;
+}
+#title-follow {
+  font-size: larger;
+  margin: 20px 20px;
+}
+.follow-profile {
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  margin-right: 20px;
+  margin-top: 30px;
+}
+.user-follow {
+  margin-right: 100px;
+  transform: translateY(-60px);
+}
+table {
+  width: 100%;
+  background-color: white;
+}
+tr {
+  transition: box-shadow 0.3s ease-in-out;
+}
+tr:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+.line-i {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(158, 158, 158, 0.596);
 }

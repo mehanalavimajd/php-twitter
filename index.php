@@ -36,6 +36,10 @@ Route::add("/user/([a-z-0-9-]*)", function ($slug) {
   $_GET['user'] = $slug;
   include("./views/user.php");
 });
+Route::add("/user/([a-z-0-9-]*)/followers", function ($slug) {
+  $_GET['user'] = $slug;
+  include("./views/followersu.php");
+});
 Route::add("/followings", function () {
   include("./views/followings.php");
 });
