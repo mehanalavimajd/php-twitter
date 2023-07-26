@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
 <html>
 
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <title>Tweeter</title>
   <link rel="icon" href="/php-twitter/public/UTA-i.png">

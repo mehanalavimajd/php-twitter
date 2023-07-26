@@ -6,6 +6,9 @@ use Steampixel\Route;
 
 // Include router class
 include 'src/Steampixel/Route.php';
+require 'src/PHPMailer-master/src/Exception.php';
+require 'src/PHPMailer-master/src/PHPMailer.php';
+require 'src/PHPMailer-master/src/SMTP.php';
 
 // Define a global basepath
 define('BASEPATH',"/php-twitter/");

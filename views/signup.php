@@ -39,7 +39,7 @@
                     <input type="email" name="email" id="email" placeholder="">
 
                     <label for="password">رمز عبور</label>
-                    <input type="password" name="pass" id="password" >
+                    <input type="password" name="pass" id="password">
 
                     <input type="submit" value="ثبت‌نام">
 
@@ -60,6 +60,11 @@
 
 </html>
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 $conn = new mysqli("localhost", "mehan", "mehan1388", "login");
@@ -73,9 +78,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $pass = $_POST['pass'];
     $email = $_POST['email'];
+
+
+
+
+    //Create an instance; passing `true` enables exceptions
+
+
     $sql = "INSERT INTO users (username, password,email,profile)
         VALUES ('$username', '$pass','$email','$dest_path')";
     try {
+        $mail = new PHPMailer(true);
+
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
+        $mail->SMTPAuth = true;
+        //to view proper logging details for success and error messages
+        // $mail->SMTPDebug = 1;
+        $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
+        $mail->Username = 'helli5.uta.twitter@gmail.com';   //email
+        $mail->Password = 'dqrxlehcryblblbj';   //16 character obtained from app password created
+        $mail->Port = 465;                    //SMTP port
+        $mail->SMTPSecure = "ssl";
+        //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+        //Recipients
+        $mail->setFrom('helli5.uta.twitter@gmail.com', 'کد یوتا توییت');
+        $mail->addAddress($email);               //Name is optional
+
+        $num = rand(100000, 999999);
+
+        $mail->Subject = 'Here is the subject';
+        $mail->Body    = 'This ';
+
+        $mail->send();
+        echo 'Message has been sent';
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             $_SESSION['username'] = $username;
@@ -88,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die();
     } catch (mysqli_sql_exception) {
         if ($conn->errno == 1062) {
-            echo "duplicate";
+            echo "<script>alert('نام کاربری یا ایمیل تکراری است')</script>";
             die();
         } else {
             echo $conn->error;
