@@ -44,6 +44,12 @@
                     <input type="submit" value="ثبت‌نام">
 
                 </form>
+                <form class="hide" action="//localhost/php-twitter/signup" method="POST">
+                    <label for="email" class="code-label">لطفا کد ارسال شده به ایمیل را وارد کنید.</label>
+                    <input type="text" name="code" class="code-input">
+                    <input type="submit" class="code-button" value="ارسال">
+
+                </form>
 
             </div><!-- FORM BODY-->
 
@@ -75,60 +81,88 @@ if ($conn->connect_error) {
 $dest_path = "public/user.png";
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $pass = $_POST['pass'];
-    $email = $_POST['email'];
+    if (isset($_POST['code'])) {
+        $username=$_SESSION['username'];
+        $sql = "SELECT * FROM code where username='$username'";
+        $result = $conn->query($sql);
 
-
-
-
-    //Create an instance; passing `true` enables exceptions
-
-
-    $sql = "INSERT INTO users (username, password,email,profile)
-        VALUES ('$username', '$pass','$email','$dest_path')";
-    try {
-        $mail = new PHPMailer(true);
-
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
-        $mail->SMTPAuth = true;
-        //to view proper logging details for success and error messages
-        // $mail->SMTPDebug = 1;
-        $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
-        $mail->Username = 'helli5.uta.twitter@gmail.com';   //email
-        $mail->Password = 'dqrxlehcryblblbj';   //16 character obtained from app password created
-        $mail->Port = 465;                    //SMTP port
-        $mail->SMTPSecure = "ssl";
-        //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-        //Recipients
-        $mail->setFrom('helli5.uta.twitter@gmail.com', 'کد یوتا توییت');
-        $mail->addAddress($email);               //Name is optional
-
-        $num = rand(100000, 999999);
-
-        $mail->Subject = 'Here is the subject';
-        $mail->Body    = 'This ';
-
-        $mail->send();
-        echo 'Message has been sent';
-        if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
-            $_SESSION['username'] = $username;
-            $_SESSION['pass'] = $pass;
-            header("location: //localhost/php-twitter/");
-            die();
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                if($row['code']==$_POST['code']){
+                    $username=$row['username'];
+                    $pass=$row['password'];
+                    $email=$row['email'];
+                    $profile=$row['profile'];
+                    var_dump($profile);
+                    $sql = "INSERT INTO users (username, password,email,profile)
+                    VALUES ('$username', '$pass','$email','$profile')";
+                    $result = $conn->query($sql);
+                    $sql = "DELETE * FROM code where username='$username'";
+                    $result = $conn->query($sql);
+                    header("location: //localhost/php-twitter");
+                }else{
+                    echo "<script>alert('کد وارد شده نادرست است')</script>";
+                }
+            }
         }
-        die();
-    } catch (mysqli_sql_exception) {
-        if ($conn->errno == 1062) {
-            echo "<script>alert('نام کاربری یا ایمیل تکراری است')</script>";
+    } else {
+        $username = $_POST['username'];
+        $pass = $_POST['pass'];
+        $email = $_POST['email'];
+        $sql = "INSERT INTO users (username, password,email,profile)
+        VALUES ('$username', '$pass','$email','$dest_path')";
+        try {
+            if ($conn->query($sql) === TRUE) {
+                $sql = "DELETE FROM users WHERE `username`='$username'";
+                $conn->query($sql);
+
+                $mail = new PHPMailer(true);
+
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
+                $mail->SMTPAuth = true;
+                //to view proper logging details for success and error messages
+                // $mail->SMTPDebug = 1;
+                $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
+                $mail->Username = 'helli5.uta.twitter@gmail.com';   //email
+                $mail->Password = 'dqrxlehcryblblbj';   //16 character obtained from app password created
+                $mail->Port = 465;                    //SMTP port
+                $mail->SMTPSecure = "ssl";
+                //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+                //Recipients
+                $mail->setFrom('helli5.uta.twitter@gmail.com', 'کد یوتا توییت');
+                $mail->addAddress($email);               //Name is optional
+
+                $num = rand(100000, 999999);
+                $sql = "INSERT INTO code (username, password,email,profile,code)
+                VALUES ('$username', '$pass','$email','$dest_path',$num)";
+                $conn->query($sql);
+                $mail->Subject = 'Here is the subject';
+                $mail->Body    = "$num";
+
+                $mail->send();
+                echo '<script>document.querySelector(".hide").className="code-form"</script>';
+                echo '<script>document.querySelector(".the-form").className="hide"</script>';
+
+
+                echo "New record created successfully";
+                $_SESSION['username'] = $username;
+                $_SESSION['pass'] = $pass;
+
+                die();
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
             die();
-        } else {
-            echo $conn->error;
+        } catch (mysqli_sql_exception) {
+            if ($conn->errno == 1062) {
+                echo "<script>alert('نام کاربری یا ایمیل تکراری است')</script>";
+                die();
+            } else {
+                echo $conn->error;
+            }
         }
     }
 }

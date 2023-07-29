@@ -165,6 +165,7 @@ li.fb a::before {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  transform: translateY(-50px);
 }
 
 .the-form label {

@@ -29,6 +29,13 @@ body {
   background-attachment: fixed;
   padding: 20px;
   overflow-x: hidden;
+  margin-bottom: -20px;
+}
+.hide{
+  display:none;
+}
+.show{
+  display: block;
 }
 
 body,
@@ -190,6 +197,7 @@ li.fb a::before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  transform: translateY(-50px);
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -webkit-box-orient: vertical;
@@ -314,4 +322,23 @@ li.fb a::before {
 }
 .sign{
   font-size: 20px !important;
+}
+.code-input{
+  text-align: center;
+  margin: auto;
+  margin-right: 40px;
+  width: 280px;
+  font-size: 20px;
+}
+.code-label{
+  margin-right: 50px;
+}
+.code-button{
+  background: #ffb37b;
+  width: 80px;
+  height: 20px;
+  border: none;
+  margin-top:10px;
+  border-radius: 5px;
+  margin-right: 40%;
 }
