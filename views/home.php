@@ -24,14 +24,12 @@ ini_set('display_errors', 1);
 
 <body>
 
-  <header>
+  <header style="background-color:#1c4a70; width:100%; text-align:center;">
     <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
 
-    <a href="#">
-      <h1 class="site-title">
-        <b>UTA</b> twitter
+    <a href="#" style:"display:inline-block; margin: 0 auto;">
+      <img style="height:100px" src="//localhost/php-twitter/public/uta.png"></img>
     </a>
-    </h1>
     <div class="alert" style="display:none">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
       This is an alert box.
