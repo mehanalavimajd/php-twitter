@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
 <html>
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <title>Tweeter</title>
   <link rel="icon" href="/php-twitter/public/UTA-i.png">
@@ -59,30 +59,30 @@ ini_set('display_errors', 1);
         <?php
         }
         ?>
-          <input type="text" id="navbar-search-input" class="search" placeholder="جستجو...">
-          <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
-          <img src="public/triangle.png" alt="" class="tri" onclick="infobox()">
-          <?php
-          if (isset($_SESSION['username'])) {
-            $username = $_SESSION['username'];
-            echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
-          ?>
-          
-          <?php
+        <input type="text" id="navbar-search-input" class="search" placeholder="جستجو...">
+        <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
+        <img src="public/triangle.png" alt="" class="tri" onclick="infobox()">
+        <?php
+        if (isset($_SESSION['username'])) {
+          $username = $_SESSION['username'];
+          echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
+        ?>
 
-          } else {
-            echo "<a id=\"username\" href=\"/php-twitter/login\">ورود</a>";
-          }
-          ?>
-          
+        <?php
+
+        } else {
+          echo "<a id=\"username\" href=\"/php-twitter/login\">ورود</a>";
+        }
+        ?>
+
         </li>
       </ul>
-      
+
     </nav>
     <div class="info-box">
-              <a href='/php-twitter/edit'>ویرایش حساب</a>
-              <div style="width:100%; height:1px; background-color: black;"></div>
-              <a href='/php-twitter/logout'>خروج</a>
+      <a href='/php-twitter/edit'>ویرایش حساب</a>
+      <div style="width:100%; height:1px; background-color: black;"></div>
+      <a href='/php-twitter/logout'>خروج</a>
     </div>
   </header>
 
@@ -103,6 +103,7 @@ ini_set('display_errors', 1);
           $date = $row['date'];
           $retweet = $row['retweet'];
           $id = $row['id'];
+          $image = $row['image'];
           $profile = "";
           $result2 = $conn->query("SELECT profile FROM users WHERE username='$user'");
           while ($row2 = $result2->fetch_assoc()) {
@@ -114,13 +115,15 @@ ini_set('display_errors', 1);
         <img class=\"twit-avatar\" src=\"$profile\"></img>
         <p class=\"twit-author\">
         <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if ($retweet !== NULL) echo "ری‌توییت شده از <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>";
-        echo "
+                                                                  echo "
       </p>
           <p id=\"text-c\">
             <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
               $text
             </a>
           </p>
+          "?> <?php if($image!=''){echo "<img style=\"width: 600px; height:400px; margin-right:25%\" src=\"http://localhost/php-twitter/$image\"></img>";}?>
+          <?php echo "
           <div class=\"btn-cont\">
           <i class=\"fa-regular fa-heart like btn\" id=\"like-$id\" onclick=\"like($id)\"></i>
           <p id=\"like-num-$id\" class=\"like-num btn\"> </p>
@@ -131,25 +134,25 @@ ini_set('display_errors', 1);
           <p id=\"com-num-$id\" class=\"com-num btn\"></p>
           
           ";
-        if ($user === $_SESSION['username']) {
-          echo "
+                                                                  if ($user === $_SESSION['username']) {
+                                                                    echo "
           <p id=\"delete-$id\" class=\"delete btn\">حذف</p>";
-        }
-        echo " 
+                                                                  }
+                                                                  echo " 
         </div>
           <p id=\"date\" class=\"date\"> $date </p>
         </div>
       </article>
       ";
-      }
-    } else {
-        echo "0 results";
-      }
-    }
-    tweets("SELECT * FROM tweet ORDER BY date DESC LIMIT 0,25");
-    function clearTweets()
-    {
-        ?>
+                                                                }
+                                                              } else {
+                                                                echo "0 results";
+                                                              }
+                                                            }
+                                                            tweets("SELECT * FROM tweet ORDER BY date DESC LIMIT 0,25");
+                                                            function clearTweets()
+                                                            {
+                                                                  ?>
       <script>
         let twits = document.querySelectorAll("article");
         for (let i = 0; i < twits.length; i++) {
@@ -158,7 +161,7 @@ ini_set('display_errors', 1);
         }
       </script>
     <?php
-  }
+                                                            }
     ?>
 
   </main>
@@ -173,14 +176,17 @@ ini_set('display_errors', 1);
         <h3 class="modal-h3">یک توییت بنویسید</h3>
         <button type="button" class="modal-close-button">&times;</button>
       </div>
-      <form action="/php-twitter/api/tweet" method="post">
+      <form action="/php-twitter/api/tweet" method="post" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="twit-input-element">
             <label class="modal-label" for="twit-text-input">متن توییت</label>
             <input maxlength="255" type="text" name="text">
           </div>
         </div>
-
+        <div>
+          <label style="margin-right: 50px;">ارسال عکس</label>
+          <input type="file" name="uploadedFile" style="margin-right: 25px;">
+        </div>
         <div class="modal-footer">
           <button type="button" class="modal-button modal-cancel-button">لغو</button>
           <button type="submit" class="modal-button modal-accept-button">ارسال!</button>
@@ -318,7 +324,7 @@ ini_set('display_errors', 1);
     })
   }
   let cbtn = document.querySelectorAll(".com-btn")
-  cbtn.forEach((e)=>{
+  cbtn.forEach((e) => {
     let id = e.id.split("com-")[1]
     $.ajax({
       type: "POST",
@@ -330,7 +336,6 @@ ini_set('display_errors', 1);
       }
     })
   })
-
 </script>
 
 <?php

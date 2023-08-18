@@ -254,7 +254,7 @@ if (isset($_FILES['uploadedFile']) && $_FILES['uploadedFile']['error'] === UPLOA
 
     if (in_array($fileExtension, $allowedfileExtensions)) {
         // directory in which the uploaded file will be moved
-        $uploadFileDir = 'upload/';
+        $uploadFileDir = 'upload/profile/';
         $dest_path = $uploadFileDir . $newFileName;
         
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
@@ -278,4 +278,5 @@ $conn->query("UPDATE users SET profile='$dest_path' WHERE username='$user'");
 $conn->query("UPDATE users SET city='$city' WHERE username='$user'");
 
 // wow, sql sucks at updating multiple things
+//header("location: //php-twitter/edit");
 }}}}

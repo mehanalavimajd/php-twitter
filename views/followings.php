@@ -114,6 +114,7 @@ ini_set('display_errors', 1);
         $text = $row['text'];
         $date = $row['date']; $retweet = $row['retweet'];
         $id = $row['id'];
+        $image = $row['image'];
         $profile = "";
         $result2 = $conn->query("SELECT profile FROM users WHERE username='$user'");
         while ($row2 = $result2->fetch_assoc()) {
@@ -132,6 +133,8 @@ ini_set('display_errors', 1);
             <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
               $text
             </a>
+          "?><?php if($image!=''){echo "<img style=\"width: 600px; height:400px; margin-right:25%\" src=\"http://localhost/php-twitter/$image\"></img>";}?>
+          <?php echo "
           </p>
           <div class=\"btn-cont\">
           <i class=\"fa-regular fa-heart like btn\" id=\"like-$id\" onclick=\"like($id)\"></i>
@@ -171,14 +174,17 @@ ini_set('display_errors', 1);
         <h3 class="modal-h3">یک توییت بنویسید</h3>
         <button type="button" class="modal-close-button">&times;</button>
       </div>
-      <form action="/php-twitter/api/tweet" method="post">
+      <form action="/php-twitter/api/tweet" enctype="multipart/form-data" method="post">
         <div class="modal-body">
           <div class="twit-input-element">
             <label class="modal-label" for="twit-text-input">متن توییت</label>
             <input maxlength="255" type="text" name="text">
           </div>
         </div>
-
+        <div>
+          <label style="margin-right: 50px;">ارسال عکس</label>
+          <input type="file" name="uploadedFile" style="margin-right: 25px;">
+        </div>
         <div class="modal-footer">
           <button type="button" class="modal-button modal-cancel-button">لغو</button>
           <button type="submit" class="modal-button modal-accept-button">ارسال!</button>

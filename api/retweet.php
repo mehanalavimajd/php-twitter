@@ -14,6 +14,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $retweet = $row['username'];
         $text = $row['text'];
+        $image=$row['image'];
         echo "hhe";
     }
 }
@@ -24,8 +25,8 @@ session_start();
 if (isset($_SESSION['username'])) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_SESSION['username'];
-        $sql = "INSERT INTO tweet (username, text,retweet)
-      VALUES ('$username', '$text','$retweet')";
+        $sql = "INSERT INTO tweet (username, text,retweet,image)
+      VALUES ('$username', '$text','$retweet','$image')";
 
         if ($conn->query($sql) === TRUE) {
 ?> 
