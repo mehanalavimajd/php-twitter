@@ -79,19 +79,19 @@ if ($result->num_rows > 0) {
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="bio">توضیحی کوتاه درباره خودتان</label>
-                                        <input type="text" value="<?php echo $bio; ?>" name="bio" class="form-control" id="bio" placeholder="Enter bio">
+                                        <input type="text" value="<?php echo $bio; ?>" name="bio" class="form-control" id="bio">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="email" style="margin-left: 87%;">ایمیل</label>
-                                        <input type="email" value="<?php echo $email; ?>" name="email" class="form-control" id="email" placeholder="Enter email ">
+                                        <label for="email" style="margin-left: 80%;">رمز جدید:</label>
+                                        <input type="password" value="" name="email" class="form-control" id="email">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="city" style="margin-left: 75%;">موقعیت مکانی</label>
-                                        <input type="text" value="<?php echo $city; ?>" name="city" class="form-control" id="city" placeholder="Enter city">
+                                        <input type="text" value="<?php echo $city; ?>" name="city" class="form-control" id="city" >
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -273,10 +273,9 @@ $_SESSION['message'] = $message;
 
 $conn = new mysqli("localhost", "mehan", "mehan1388", "login");
 $conn->query("UPDATE users SET bio='$bio' WHERE username='$user'");
-$conn->query("UPDATE users SET email='$email' WHERE username='$user'");
+$conn->query("UPDATE users SET password='$email' WHERE username='$user'");
 $conn->query("UPDATE users SET profile='$dest_path' WHERE username='$user'");
 $conn->query("UPDATE users SET city='$city' WHERE username='$user'");
-
 // wow, sql sucks at updating multiple things
 //header("location: //php-twitter/edit");
 }}}}

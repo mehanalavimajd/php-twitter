@@ -98,11 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $sql = "INSERT INTO users (username, password,email,profile)
                     VALUES ('$username', '$pass','$email','$profile')";
                     $result = $conn->query($sql);
-                    $sql = "DELETE * FROM code where username='$username'";
-                    $result = $conn->query($sql);
                     header("location: //localhost/php-twitter");
                 }else{
-                    echo "<script>alert('کد وارد شده نادرست است')</script>";
+                    echo $row['code'];
                 }
             }
         }
