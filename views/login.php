@@ -6,6 +6,7 @@
     <title>UTA tweeter</title>
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/php-twitter/public/login-prefix.css">
+    <link rel="icon" href="/php-twitter/public/UTA-i.png">
     <style>
         .srouce{
             text-align: center;
@@ -15,7 +16,6 @@
     </style>
 </head>
 <body>
-
     <div class="main-container">
         <div class="form-container">
 

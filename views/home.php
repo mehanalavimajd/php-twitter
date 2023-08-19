@@ -9,7 +9,7 @@ ini_set('display_errors', 1);
 
 <head>
   <meta charset="utf-8">
-  <title>Tweeter</title>
+  <title>یوتا توییت</title>
   <link rel="icon" href="/php-twitter/public/UTA-i.png">
   <!-- This is a 3rd-party stylesheet to make available the font family to be used for this page ("Roboto"). -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
@@ -23,7 +23,7 @@ ini_set('display_errors', 1);
 </head>
 
 <body>
-
+<!-- <div><?php echo $_SESSION['username'];?></div>    -->
   <header style="background-color:#1c4a70; width:100%; text-align:center;">
     <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
 
@@ -131,7 +131,8 @@ ini_set('display_errors', 1);
           <p id=\"com-num-$id\" class=\"com-num btn\"></p>
           
           ";
-                                                                  if ($user === $_SESSION['username']) {
+
+             if (isset($_SESSION['username']) && $user === $_SESSION['username']) {
                                                                     echo "
           <p id=\"delete-$id\" class=\"delete btn\">حذف</p>";
                                                                   }

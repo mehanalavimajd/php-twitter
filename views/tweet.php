@@ -10,7 +10,7 @@ ini_set('display_errors', 1);
 <head>
 
   <meta charset="utf-8">
-  <title>Tweeter</title>
+  <title>یوتا توییت</title>
   <link rel="icon" href="/php-twitter/public/UTA-i.png">
   <!-- This is a 3rd-party stylesheet to make available the font family to be used for this page ("Roboto"). -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
@@ -26,45 +26,22 @@ ini_set('display_errors', 1);
 
 <body>
 
-  <header>
+<header style="background-color:#1c4a70; width:100%; text-align:center;">
     <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
 
-    <a href="//localhost/php-twitter">
-      <h1 class="site-title">
-        <b>UTA</b> twitter
+    <a href="#" style:"display:inline-block; margin: 0 auto;">
+      <img style="height:100px" src="//localhost/php-twitter/public/uta.png"></img>
     </a>
-    </h1>        <div class="alert" style="display:none">
+    <div class="alert" style="display:none">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
       This is an alert box.
     </div>
-    <nav class="navbar">
-      <ul class="navlist">
-
-
-
-          <?php
-          session_start();
-          if (isset($_SESSION['username'])) {
-            $username = $_SESSION['username'];
-            echo "<a id=\"username\" href=\"/php-twitter/user/$username\">$username</a>";
-          ?>
-            <div class="info-box">
-              <a href='/php-twitter/logout'>Logout</a>
-            </div>
-          <?php
-
-          } else {
-            echo "<a id=\"username\" href=\"/php-twitter/login\">ورود</a>";
-          }
-          ?>
-        </li>
-      </ul>
-    </nav>
-  </header>
+</header>
 
   <main class="twit-container">
 
     <?php
+    session_start();
     $Id=0;
     function tweets($sql)
     {
@@ -92,7 +69,7 @@ ini_set('display_errors', 1);
         <div class=\"twit-content\">
         <img class=\"twit-avatar\" src=\"//localhost/php-twitter/$profile\"></img>
         <p class=\"twit-author\">
-        <b><a href=\"/php-twitter/user/$user\">$user</a> </b>" ?> <?php if($retweet!==NULL) echo "retweeted from <a class=\"retweet-link\" href=\"localhost/php-twitter/user/$retweet\">$retweet</a>"; echo "
+        <b><a href=\"http://localhost/php-twitter/user/$user\">$user</a> </b>" ?> <?php if($retweet!==NULL) echo "ری‌توییت شده از <a class=\"retweet-link\" href=\"http://localhost/php-twitter/user/$retweet\">$retweet</a>"; echo "
       </p>
       <p id=\"text-c\">
           <a href=\"http://localhost/php-twitter/tweet/$id\" class=\"twit-text\">
@@ -107,7 +84,7 @@ ini_set('display_errors', 1);
           <i class=\"fa-regular fa-comment com-btn\" id=\"com-$id\"></i></a>
           <p id=\"com-num-$id\" class=\"com-num btn\"></p>
           ";
-          if ($user === $_SESSION['username']) {
+          if (isset($_SESSION['username']) && $user === $_SESSION['username']) {
             echo "
           <p id=\"delete-$id\" class=\"btn delete\">حذف</p>";
           }

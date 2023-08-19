@@ -10,7 +10,8 @@ ini_set('display_errors', 1);
 <head>
 
   <meta charset="utf-8">
-  <title>Tweeter</title>
+  <title>یوتا توییت</title>
+  <link rel="icon" href="/php-twitter/public/UTA-i.png">
   <link rel="icon" href="/php-twitter/public/UTA-i.png">
   <!-- This is a 3rd-party stylesheet to make available the font family to be used for this page ("Roboto"). -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
